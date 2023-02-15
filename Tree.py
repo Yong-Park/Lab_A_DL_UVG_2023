@@ -45,8 +45,7 @@ class Tree:
                 stack.insert(0, node.left)
             if node.right is not None:
                 stack.insert(0, node.right)
-        result = result.reverse
-        return result
+        return list(reversed(result))
 
     def generate_dot(self, node, dot):
         if node is not None:
