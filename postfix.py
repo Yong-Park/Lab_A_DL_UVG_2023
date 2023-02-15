@@ -39,7 +39,6 @@ class Postfix:
         self.data = ''.join([c for c in self.infix_array if c != ' '])
         return self.data
 
-
     def transform_postfix(self,c):
         print(c)
         for l in c:
