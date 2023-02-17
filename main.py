@@ -1,14 +1,14 @@
 from postfix import *
 from Tree import *
-from thompson import *
+from thompson_v2 import *
 
 #lenguaje
 # r = '(a|b)*abb'
 # r = '(a|)*abb'
 # r = 'ab(a|b*)ab*ba'
 # r = 'ab(abba|bbb*)aab*baba|a'
-r = "a*a"
-# r = "ab"
+r = "a*"
+# r = "(ab)*"
 
 #comenzar para convertirlo 
 post = Postfix(r)
