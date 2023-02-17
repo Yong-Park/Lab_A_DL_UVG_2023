@@ -6,14 +6,14 @@ digraph {
 	q3
 	q4
 	q5
-	q6
+	q6 [fillcolor="#7fff00" style=filled]
 	q7
 	q8
 	q9
 	q10
 	q11
 	q12
-	q13 [shape=doublecircle]
+	q13 [fillcolor="#ee3b3b" shape=doublecircle style=filled]
 	"" [shape=plaintext]
 	q0 -> q1 [label=a]
 	q2 -> q3 [label=b]

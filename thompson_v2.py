@@ -229,7 +229,9 @@ class Thompson:
         
         for name in q_list:
             if name == final:
-                f.node(str(name), shape="doublecircle")
+                f.node(str(name), shape="doublecircle",fillcolor="#ee3b3b",style="filled")
+            elif name == inicio:
+                f.node(str(name),fillcolor="#7fff00",style="filled")
             else:
                 f.node(str(name))
         f.node("", shape="plaintext")
