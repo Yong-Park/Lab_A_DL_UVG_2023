@@ -1,6 +1,7 @@
 from postfix import *
 from Tree import *
 from thompson_v2 import *
+from subset import *
 
 #lenguaje
 r = '(a|b)*abb'
