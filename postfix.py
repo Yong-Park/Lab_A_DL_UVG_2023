@@ -1,7 +1,4 @@
 class Postfix:
-    
-    
-    
     def __init__(self,infix):
         self.infix = infix
         self.postfix = None

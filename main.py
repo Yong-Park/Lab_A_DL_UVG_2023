@@ -3,12 +3,15 @@ from Tree import *
 from thompson_v2 import *
 
 #lenguaje
-# r = '(a|b)*abb'
+r = '(a|b)*abb'
 # r = '(a|)*abb'
 # r = 'ab(a|b*)ab*ba'
 # r = 'ab(abba|bbb*)aab*baba|a'
-r = "a*"
+# r = "a*"
 # r = "(ab)*"
+# r = "(a|b)a*"
+# r = "(a|b)*(a|b)"
+# r ="(b|b)*abb(a|b)*"
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -24,6 +27,8 @@ result = tree.left_most()
 #comenzar con la construccion de thompson
 afn = Thompson()
 afn_construido = afn.construccion_thompson(result)
-print()
+
 print(afn_construido[0])
 print(afn_construido[1])
+
+afn.afnGraph(afn_construido[0],afn_construido[1][0][0],afn_construido[1][0][1])

@@ -1,3 +1,7 @@
+import graphviz
+import os
+os.environ["PATH"] += os.pathsep + 'D:/Program Files (x86)/Graphviz2.38/bin/'
+
 class Thompson:
     
     def __init__(self):
@@ -29,8 +33,8 @@ class Thompson:
         self.chain = []
         for l in output:
             self.list.append(l)
-            print("===========")
-            print("list: ", self.list)
+            # print("===========")
+            # print("list: ", self.list)
             if self.list[len(self.list)-1] == "|":
                 self.orFunction()
             elif self.list[len(self.list)-1] == "*":
@@ -39,10 +43,9 @@ class Thompson:
                 self.andFunction()
             else:
                 self.createState()
-            print("afn: ", self.afn)
-            print("cadena: ", self.cadena)
-            # print("lista que debe de estar vacia: ", self.lista)
-            print("first and las de cadena: ", self.cadena_fl)
+            # print("afn: ", self.afn)
+            # print("cadena: ", self.cadena)
+            # print("first and last de cadena: ", self.cadena_fl)
         return [self.afn, self.cadena_fl]
 
     def createState(self):
@@ -101,8 +104,60 @@ class Thompson:
 
 
     def orFunction(self):
-        pass
+        #en lista crear agregar como uno por medio de extend
+        for sublista in self.cadena:
+            self.lista.extend(sublista)
+            
+        #creacion de los dos estados y su conexion
+        self.chain.append(self.q[0])
+        self.chain.append(self.eps)
+        self.chain.append(self.cadena_fl[len(self.cadena_fl)-2][0])
+        self.lista.append(self.chain)
+        self.afn.append(self.chain)
+        self.chain = []
         
+        self.chain.append(self.q[0])
+        self.chain.append(self.eps)
+        self.chain.append(self.cadena_fl[len(self.cadena_fl)-1][0])
+        self.lista.append(self.chain)
+        self.afn.append(self.chain)
+        self.chain = []
+        
+        self.chain.append(self.cadena_fl[len(self.cadena_fl)-2][1])
+        self.chain.append(self.eps)
+        self.chain.append(self.q[1])
+        self.lista.append(self.chain)
+        self.afn.append(self.chain)
+        self.chain = []
+        
+        self.chain.append(self.cadena_fl[len(self.cadena_fl)-1][1])
+        self.chain.append(self.eps)
+        self.chain.append(self.q[1])
+        self.lista.append(self.chain)
+        self.afn.append(self.chain)
+        self.chain = []
+        
+        self.cadena.append(self.lista) #agregar la nueva que esta unificada por medio de exten
+        self.lista = []
+        
+        #eliminar los dos anteriores al nuevo agregado
+        self.cadena.pop(len(self.cadena)-2)
+        self.cadena.pop(len(self.cadena)-2)
+        
+        #obtener sus nuevos inciales y finales
+        fl = []
+        fl.append(self.q[0]) 
+        fl.append(self.q[1])
+        #agregarlo
+        self.cadena_fl.append(fl)
+        #eliminar los dos anteriores del nuevo agregaedo
+        self.cadena_fl.pop(len(self.cadena_fl)-2)
+        self.cadena_fl.pop(len(self.cadena_fl)-2)
+        
+        self.q.pop(0)
+        self.q.pop(0)
+        
+        self.list.pop(len(self.list)-1)
             
     def kleenFunction(self):
         #creacion de los dos estados y su conexion
@@ -152,7 +207,40 @@ class Thompson:
 
         self.list.pop(len(self.list)-1)
 
-
+    #mostar el grafo del afn creado
+    def afnGraph(self,afn,inicio,final):
+        q_list = []
+        q = []
+        for i in range(1000):
+            value = "q"+str(i)
+            q.append(value)
+        
+        #guardar los valores de q utilizados
+        for l in afn:
+            for q_search in q:
+                if q_search in l:
+                    if q_search not in q_list:
+                        q_list.append(q_search)
+                        
+        print(q_list)
+                        
+        f = graphviz.Digraph(comment = "afn")
+        inicio_listo = True
+        
+        for name in q_list:
+            if name == final:
+                f.node(str(name), shape="doublecircle")
+            else:
+                f.node(str(name))
+        f.node("", shape="plaintext")
+        for l in afn:
+            if inicio in l:
+                if(inicio_listo):
+                    f.edge("",str(l[0]),label = "")
+                    inicio_listo = False
+            f.edge(str(l[0]),str(l[2]),label = str(l[1]))
+            
+        f.render("afn", view = True)
 
 
     
