@@ -1,35 +1,35 @@
 // afn
 digraph {
-	q0
-	q1
-	q2
-	q3
-	q4
-	q5
-	q6 [fillcolor="#7fff00" style=filled]
-	q7
-	q8
-	q9
-	q10
-	q11
-	q12
-	q13 [fillcolor="#ee3b3b" shape=doublecircle style=filled]
+	0
+	1
+	2
+	3
+	4
+	5
+	6 [fillcolor="#7fff00" style=filled]
+	7
+	8
+	9
+	10
+	11
+	12
+	13 [fillcolor="#ee3b3b" shape=doublecircle style=filled]
 	"" [shape=plaintext]
-	q0 -> q1 [label=a]
-	q2 -> q3 [label=b]
-	q4 -> q0 [label="ε"]
-	q4 -> q2 [label="ε"]
-	q1 -> q5 [label="ε"]
-	q3 -> q5 [label="ε"]
-	"" -> q6 [label=""]
-	q6 -> q4 [label="ε"]
-	q5 -> q7 [label="ε"]
-	q6 -> q7 [label="ε"]
-	q5 -> q4 [label="ε"]
-	q8 -> q9 [label=a]
-	q7 -> q8 [label="ε"]
-	q10 -> q11 [label=b]
-	q9 -> q10 [label="ε"]
-	q12 -> q13 [label=b]
-	q11 -> q12 [label="ε"]
+	0 -> 1 [label=a]
+	2 -> 3 [label=b]
+	4 -> 0 [label="ε"]
+	4 -> 2 [label="ε"]
+	1 -> 5 [label="ε"]
+	3 -> 5 [label="ε"]
+	"" -> 6 [label=""]
+	6 -> 4 [label="ε"]
+	5 -> 7 [label="ε"]
+	6 -> 7 [label="ε"]
+	5 -> 4 [label="ε"]
+	8 -> 9 [label=a]
+	7 -> 8 [label="ε"]
+	10 -> 11 [label=b]
+	9 -> 10 [label="ε"]
+	12 -> 13 [label=b]
+	11 -> 12 [label="ε"]
 }

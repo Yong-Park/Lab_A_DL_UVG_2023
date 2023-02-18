@@ -1,0 +1,20 @@
+// afd
+digraph {
+	A [fillcolor="#7fff00" style=filled]
+	B
+	C
+	D
+	E [fillcolor="#ee3b3b" shape=doublecircle style=filled]
+	"" [shape=plaintext]
+	"" -> A [label=""]
+	A -> B [label=a]
+	A -> C [label=b]
+	B -> B [label=a]
+	B -> D [label=b]
+	C -> B [label=a]
+	C -> C [label=b]
+	D -> B [label=a]
+	D -> E [label=b]
+	E -> B [label=a]
+	E -> C [label=b]
+}

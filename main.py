@@ -2,6 +2,7 @@ from postfix import *
 from Tree import *
 from thompson_v2 import *
 from subset import *
+from simulation import *
 
 #lenguaje
 r = '(a|b)*abb'
@@ -27,12 +28,19 @@ tree.build_tree_from_postfix(postfix)
 result = tree.left_most()
 #comenzar con la construccion de thompson
 afn = Thompson()
+#construir el afn
 afn_construido = afn.construccion_thompson(result)
-
 #mostrar el grafico del afn
 afn.afnGraph(afn_construido[0],afn_construido[1])
 
-print("__________________")
-#comenzar la utilizacion de subset
+#comenzar la utilizacion de subset alimentarlo con el afn, y los inicales y finales y tambien el postfix
 subset = Subset(afn_construido[0],afn_construido[1],postfix)
+#comenzar la construccion por medio de subset
+afd = subset.afnConstruction()
+#construir el grafo del afn
+subset.afdGraph(afd[0],afd[1])
+
+#comenzar con la simulacion para afn y afd
+simulation = Simulation()
+
 

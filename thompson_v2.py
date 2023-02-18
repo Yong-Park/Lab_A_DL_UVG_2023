@@ -22,7 +22,7 @@ class Thompson:
     #se encarga de crear 1000 estados a utilizar
     def estados(self):
         for i in range(1000):
-            value = "q"+str(i)
+            value = i
             self.q.append(value)
             
     def construccion_thompson(self, output):
@@ -214,7 +214,7 @@ class Thompson:
         q_list = []
         q = []
         for i in range(1000):
-            value = "q"+str(i)
+            value = i
             q.append(value)
         
         #guardar los valores de q utilizados
