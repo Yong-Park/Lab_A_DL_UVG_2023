@@ -29,7 +29,10 @@ result = tree.left_most()
 afn = Thompson()
 afn_construido = afn.construccion_thompson(result)
 
-print(afn_construido[0])
-print(afn_construido[1])
+#mostrar el grafico del afn
+afn.afnGraph(afn_construido[0],afn_construido[1])
 
-afn.afnGraph(afn_construido[0],afn_construido[1][0][0],afn_construido[1][0][1])
+print("__________________")
+#comenzar la utilizacion de subset
+subset = Subset(afn_construido[0],afn_construido[1],postfix)
+

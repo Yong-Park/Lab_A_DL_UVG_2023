@@ -26,7 +26,7 @@ class Thompson:
             self.q.append(value)
             
     def construccion_thompson(self, output):
-        print(output)
+        # print(output)
         #este se llenara con los chain, donde al final se ve si con ello se crea un una nueva cadena o solo se le realiza el extend.
         self.lista = []
         #utilizado solo para crear los movimientos de estados para luego limpiarlo despues de una ejecucion
@@ -208,7 +208,9 @@ class Thompson:
         self.list.pop(len(self.list)-1)
 
     #mostar el grafo del afn creado
-    def afnGraph(self,afn,inicio,final):
+    def afnGraph(self,afn,sfPoint):
+        inicio = sfPoint[0][0]
+        final = sfPoint[0][1]
         q_list = []
         q = []
         for i in range(1000):
@@ -221,8 +223,6 @@ class Thompson:
                 if q_search in l:
                     if q_search not in q_list:
                         q_list.append(q_search)
-                        
-        print(q_list)
                         
         f = graphviz.Digraph(comment = "afn")
         inicio_listo = True
