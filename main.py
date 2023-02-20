@@ -5,7 +5,7 @@ from subset import *
 from simulation import *
 
 #lenguaje
-r = '(a|b)*abb'
+# r = '(a|b)*abb'
 # r = '(a|)*abb'
 # r = 'ab(a|b*)ab*ba'
 # r = 'ab(abba|bbb*)aab*baba|a'
@@ -14,6 +14,7 @@ r = '(a|b)*abb'
 # r = "(a|b)a*"
 # r = "(a|b)*(a|b)"
 # r ="(b|b)*abb(a|b)*"
+r = "(ab)?"
 
 #comenzar para convertirlo 
 post = Postfix(r)
