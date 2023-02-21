@@ -38,6 +38,25 @@ class Postfix:
         self.infix_array.pop(len(self.infix_array)-1)
         
         self.data = ''.join([c for c in self.infix_array if c != ' '])
+        print(self.data)
+        #realizar revision de simbolo
+        for l in range(len(self.data)):
+            if self.data[l] in '+*':
+                if l-1 > 0:
+                    if self.data[l-1] not in '|+*.':
+                        print("syntax error")
+                        return 0
+            elif self.data[l] in '|':
+                if l-1 > 0 and l+1 < len(self.data):
+                    if self.data[l-1] not in '|*+.' and self.data[l+1] not in '|+*.':
+                        print("syntax error")
+                        return 0
+            elif self.data[l] in '.':
+                if l-1 > 0 and l+1 < len(self.data):
+                    if self.data[l-1] not in '|.' and self.data[l+1] not in '|+*.':
+                        print("syntax error")
+                        return 0
+        #si todo esta bien regresa todo sin problema
         return self.data
 
     def transform_postfix(self,c):
