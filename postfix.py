@@ -92,7 +92,7 @@ class Postfix:
                                 self.stack.pop(len(self.stack)-2)
                             elif self.stack[len(self.stack)-2] == "|":
                                 self.output.append(self.stack[len(self.stack)-1])
-                                self.stack.pop(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
                     except:
                         pass
                 elif l =="*":
@@ -100,7 +100,7 @@ class Postfix:
                         if len(self.stack) > 1:
                             if self.stack[len(self.stack)-2] == "*":
                                 self.output.append(self.stack[len(self.stack)-1])
-                                self.stack.pop(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
                             elif self.stack[len(self.stack)-2] == "+":
                                 self.output.append(self.stack[len(self.stack)-2])
                                 self.stack.pop(len(self.stack)-2)
@@ -111,12 +111,15 @@ class Postfix:
                         if len(self.stack) > 1:
                             if self.stack[len(self.stack)-2] == "+":
                                 self.output.append(self.stack[len(self.stack)-1])
-                                self.stack.pop(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
                     except:
                         pass
                             
             else:
                 self.output.append(l)
+            # print("stack: ", self.stack)
+            # print("output: ", self.output)
+            # print("__________")
         while(len(self.stack) > 0):
             self.output.append(self.stack[len(self.stack)-1])
             self.stack.pop(len(self.stack)-1)

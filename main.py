@@ -16,7 +16,9 @@ from simulation import *
 # r ="(b|b)*abb(a|b)*"
 # r = "(ab)?"
 # r = "0?(1?)?0*"
-r = "a+"
+# r = "(ab+)?"
+# r ='(aa)?'
+r = 'a+(a?|b)*b'
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -24,6 +26,7 @@ post = Postfix(r)
 new_infix = post.infix_Transformation()
 #obtencion de su postfix
 postfix = post.transform_postfix(new_infix)
+print(postfix)
 # Construccion del arbol del postfix
 tree = Tree()
 tree.build_tree_from_postfix(postfix)
