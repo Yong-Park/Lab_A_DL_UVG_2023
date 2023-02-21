@@ -41,6 +41,8 @@ class Thompson:
                 self.kleenFunction()
             elif self.list[len(self.list)-1] == ".":
                 self.andFunction()
+            elif self.list[len(self.list)-1] == "+":
+                self.kleenPositiveFunction()
             else:
                 self.createState()
             # print("afn: ", self.afn)
@@ -190,6 +192,47 @@ class Thompson:
         self.chain = []
 
         #agregar las nuevas a la cadena anterior del *
+        self.cadena[len(self.cadena)-1].extend(self.lista)
+        self.lista = []
+
+        fl = []
+        fl.append(self.q[0])
+        fl.append(self.q[1])
+        #agregar las nuevos inicial y final
+        self.cadena_fl.append(fl)
+
+        #eliminar el anterior del nuevo agregaedo
+        self.cadena_fl.pop(len(self.cadena_fl)-2)
+
+        self.q.pop(0)
+        self.q.pop(0)
+
+        self.list.pop(len(self.list)-1)
+
+    def kleenPositiveFunction(self):
+        #creacion de los dos estados y su conexion
+        self.chain.append(self.q[0])
+        self.chain.append(self.eps)
+        self.chain.append(self.cadena_fl[len(self.cadena_fl)-1][0])
+        self.lista.append(self.chain)
+        self.afn.append(self.chain)
+        self.chain = []
+
+        self.chain.append(self.cadena_fl[len(self.cadena_fl)-1][1])
+        self.chain.append(self.eps)
+        self.chain.append(self.q[1])
+        self.lista.append(self.chain)
+        self.afn.append(self.chain)
+        self.chain = []
+
+        self.chain.append(self.cadena_fl[len(self.cadena_fl)-1][1])
+        self.chain.append(self.eps)
+        self.chain.append(self.cadena_fl[len(self.cadena_fl)-1][0])
+        self.lista.append(self.chain)
+        self.afn.append(self.chain)
+        self.chain = []
+
+        #agregar las nuevas a la cadena anterior del +
         self.cadena[len(self.cadena)-1].extend(self.lista)
         self.lista = []
 

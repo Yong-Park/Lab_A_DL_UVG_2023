@@ -30,7 +30,7 @@ class Postfix:
                 if self.infix_array[value-1] in ".":
                     self.infix_array[value-1] =" "
                     
-            elif self.infix_array[value] in '*':
+            elif self.infix_array[value] in '*+':
                 if self.infix_array[value-1] in ".":
                     self.infix_array[value-1] =" "
                     
@@ -47,7 +47,7 @@ class Postfix:
             # print(l)
             # print("s: " + str(stack))
             # print("o: " + str(output))
-            if l in "|()*.":
+            if l in "|()*.+":
                 self.stack.append(l)
 
                 if l == ")":
@@ -70,6 +70,9 @@ class Postfix:
                             if self.stack[len(self.stack)-2] == "*":
                                 self.output.append(self.stack[len(self.stack)-2])
                                 self.stack.pop(len(self.stack)-2)
+                            elif self.stack[len(self.stack)-2] == "+":
+                                self.output.append(self.stack[len(self.stack)-2])
+                                self.stack.pop(len(self.stack)-2)
                             elif self.stack[len(self.stack)-2] == ".":
                                 self.output.append(self.stack[len(self.stack)-1])
                                 self.stack.pop(len(self.stack)-1)
@@ -79,6 +82,9 @@ class Postfix:
                     try:
                         if len(self.stack) > 1:
                             if self.stack[len(self.stack)-2] == "*":
+                                self.output.append(self.stack[len(self.stack)-2])
+                                self.stack.pop(len(self.stack)-2)
+                            elif self.stack[len(self.stack)-2] == "+":
                                 self.output.append(self.stack[len(self.stack)-2])
                                 self.stack.pop(len(self.stack)-2)
                             elif self.stack[len(self.stack)-2] == ".":
@@ -95,6 +101,17 @@ class Postfix:
                             if self.stack[len(self.stack)-2] == "*":
                                 self.output.append(self.stack[len(self.stack)-1])
                                 self.stack.pop(self.stack[len(self.stack)-1])
+                            elif self.stack[len(self.stack)-2] == "+":
+                                self.output.append(self.stack[len(self.stack)-2])
+                                self.stack.pop(len(self.stack)-2)
+                    except:
+                        pass
+                elif l =="+":
+                    try:
+                        if len(self.stack) > 1:
+                            if self.stack[len(self.stack)-2] == "+":
+                                self.output.append(self.stack[len(self.stack)-1])
+                                self.stack.pop(self.stack[len(self.stack)-1])
                     except:
                         pass
                             
@@ -104,8 +121,8 @@ class Postfix:
             self.output.append(self.stack[len(self.stack)-1])
             self.stack.pop(len(self.stack)-1)
 
-        # print("output: " + str(output))
-        # print("stack: " + str(stack))
+        # print("output: " + str(self.output))
+        # print("stack: " + str(self.stack))
         
         #convertir el postfix a afd
         return self.output

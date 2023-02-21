@@ -15,7 +15,8 @@ from simulation import *
 # r = "(a|b)*(a|b)"
 # r ="(b|b)*abb(a|b)*"
 # r = "(ab)?"
-r = "0?(1?)?0*"
+# r = "0?(1?)?0*"
+r = "a+"
 
 #comenzar para convertirlo 
 post = Postfix(r)

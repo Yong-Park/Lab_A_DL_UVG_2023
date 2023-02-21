@@ -2,19 +2,8 @@
 digraph {
 	A [fillcolor="#7fff00" style=filled]
 	B [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	C [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	D [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	E
 	"" [shape=plaintext]
 	"" -> A [label=""]
-	A -> B [label=0]
-	A -> C [label=1]
-	B -> D [label=0]
-	B -> E [label=1]
-	C -> E [label=0]
-	C -> E [label=1]
-	D -> D [label=0]
-	D -> E [label=1]
-	E -> E [label=0]
-	E -> E [label=1]
+	A -> B [label=a]
+	B -> B [label=a]
 }
