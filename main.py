@@ -6,7 +6,7 @@ from simulation import *
 from minimizacion import *
 
 #lenguaje
-r = '(a|b)*abb'
+# r = '(a|b)*abb'
 # r = '(a|)*abb'
 # r = 'ab(a|b*)ab*ba'
 # r = 'ab(abba|bbb*)aab*baba|a'
@@ -16,7 +16,7 @@ r = '(a|b)*abb'
 # r = "(a|b)*(a|b)"
 # r ="(b|b)*abb(a|b)*"
 # r = "(ab)?"
-# r = "0?(1?)?0*"
+r = "0?(1?)?0*0"
 # r = "(ab+)?"
 # r ='(aa)?'
 # r = 'a+(a?|b)*b'

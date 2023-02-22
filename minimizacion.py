@@ -77,6 +77,7 @@ class Minimizacion():
                             grupos[clave] = [estado[0]]
 
                     resultado = list(grupos.values())
+                    print(resultado)
                     resultado.remove(x)
                     
                     self.P0.remove(x)
