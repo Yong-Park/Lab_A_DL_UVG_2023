@@ -3,6 +3,7 @@ from Tree import *
 from thompson_v2 import *
 from subset import *
 from simulation import *
+from minimizacion import *
 
 #lenguaje
 # r = '(a|b)*abb'
@@ -47,6 +48,9 @@ subset = Subset(afn_construido[0],afn_construido[1],postfix)
 afd = subset.afnConstruction()
 #construir el grafo del afn
 subset.afdGraph(afd[0],afd[1])
+
+#realizar la minimizacion del afd
+minimizacion = Minimizacion(afd[0],afd[1])
 
 # #comenzar con la simulacion para afn y afd
 # simulation = Simulation()

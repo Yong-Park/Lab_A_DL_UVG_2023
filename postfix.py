@@ -39,38 +39,40 @@ class Postfix:
         self.infix_array.pop(len(self.infix_array)-1)
         
         self.data = ''.join([c for c in self.infix_array if c != ' '])
-        print(self.data)
+        # print(self.data)
         #revisar si esta correctamente el regex
-        print("_____________")
+        # print("_____________")
         for l in range(len(self.data)):
-            print(self.data[l])
+            # print(self.data[l])
             if l-1 >= 0 and l+1 <= len(self.data):
                 if self.data[l] in '+*':
                     if self.data[l-1] not in '+*.|(' and self.data[l+1] not in '*+(':
-                        print(self.data[l] in '+*')
-                        print(self.data[l-1] not in '+*.|(')
-                        print(self.data[l+1] not in '*+(')
+                        pass
+                        # print(self.data[l] in '+*')
+                        # print(self.data[l-1] not in '+*.|(')
+                        # print(self.data[l+1] not in '*+(')
                     else:
-                        print("anterior ",self.data[l-1])
-                        print("seguido ",self.data[l+1])
+                        # print("anterior ",self.data[l-1])
+                        # print("seguido ",self.data[l+1])
                         print("system error")
                         sys.exit()
                 elif self.data[l] in '.|':
                     if self.data[l-1] not in '.|(' and self.data[l+1] not in '.*+)|':
-                        print(self.data[l] in '.|')
-                        print(self.data[l-1] not in '+*.|(')
-                        print(self.data[l+1] not in '.*+)|')
+                        pass
+                        # print(self.data[l] in '.|')
+                        # print(self.data[l-1] not in '+*.|(')
+                        # print(self.data[l+1] not in '.*+)|')
                     else:
-                        print("anterior ",self.data[l-1])
-                        print("seguido ",self.data[l+1])
+                        # print("anterior ",self.data[l-1])
+                        # print("seguido ",self.data[l+1])
                         print("system error")
                         sys.exit()
             else:
                 if self.data[l] in '+*.|':
                     print("system error")
                     sys.exit()
-            print("_____________")
-        print("_____________")
+        #     print("_____________")
+        # print("_____________")
         #si todo esta bien regresa todo sin problema
         return self.data
 
