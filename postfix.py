@@ -44,27 +44,32 @@ class Postfix:
         # print("_____________")
         for l in range(len(self.data)):
             # print(self.data[l])
-            if l-1 >= 0 and l+1 <= len(self.data):
-                if self.data[l] in '+*':
-                    if self.data[l-1] not in '+*.|(' and self.data[l+1] not in '*+(':
-                        pass
-                        # print(self.data[l] in '+*')
-                        # print(self.data[l-1] not in '+*.|(')
-                        # print(self.data[l+1] not in '*+(')
-                    else:
-                        # print("anterior ",self.data[l-1])
-                        # print("seguido ",self.data[l+1])
-                        print("system error")
-                        sys.exit()
-                elif self.data[l] in '.|':
-                    if self.data[l-1] not in '.|(' and self.data[l+1] not in '.*+)|':
-                        pass
-                        # print(self.data[l] in '.|')
-                        # print(self.data[l-1] not in '+*.|(')
-                        # print(self.data[l+1] not in '.*+)|')
-                    else:
-                        # print("anterior ",self.data[l-1])
-                        # print("seguido ",self.data[l+1])
+            if l-1 >= 0 :
+                if l+1 < len(self.data):
+                    if self.data[l] in '+*':
+                        if self.data[l-1] not in '+*.|(' and self.data[l+1] not in '*+(':
+                            pass
+                            # print(self.data[l] in '+*')
+                            # print(self.data[l-1] not in '+*.|(')
+                            # print(self.data[l+1] not in '*+(')
+                        else:
+                            # print("anterior ",self.data[l-1])
+                            # print("seguido ",self.data[l+1])
+                            print("system error")
+                            sys.exit()
+                    elif self.data[l] in '.|':
+                        if self.data[l-1] not in '.|(' and self.data[l+1] not in '.*+)|':
+                            pass
+                            # print(self.data[l] in '.|')
+                            # print(self.data[l-1] not in '+*.|(')
+                            # print(self.data[l+1] not in '.*+)|')
+                        else:
+                            # print("anterior ",self.data[l-1])
+                            # print("seguido ",self.data[l+1])
+                            print("system error")
+                            sys.exit()
+                else:
+                    if self.data[l] in '.|':
                         print("system error")
                         sys.exit()
             else:
