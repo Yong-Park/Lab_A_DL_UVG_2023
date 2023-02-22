@@ -65,6 +65,7 @@ class Minimizacion():
                     print("tabla: ", tabla)
                     
                     #juntarlos por sus similitudes
+                    
                     grupos = {}
 
                     for estado in tabla:
@@ -72,13 +73,15 @@ class Minimizacion():
                         valor = estado[2]
                         clave = f"{letra}_{valor}"
                         if clave in grupos:
-                            grupos[clave].append(estado[0])
+                            if estado[0] not in grupos[clave]:
+                                grupos[clave].append(estado[0])
                         else:
                             grupos[clave] = [estado[0]]
 
-                    resultado = list(grupos.values())
+                    resultado = [v for v in grupos.values() if len(v) > 1]
+
                     print(resultado)
-                    resultado.remove(x)
+                    break
                     
                     self.P0.remove(x)
                     self.P0.extend(resultado)
