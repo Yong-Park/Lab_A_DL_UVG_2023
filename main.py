@@ -6,7 +6,7 @@ from simulation import *
 from minimizacion import *
 
 #lenguaje
-r = '(a|b)*abb'
+# r = '(a|b)*abb'
 # r = '(a|)*abb'
 # r = 'ab(a|b*)ab*ba'
 # r = 'ab(abba|bbb*)aab*baba|a'
@@ -24,7 +24,8 @@ r = '(a|b)*abb'
 # r = 'a+(a?|)*b'
 # r = 'ab'
 # r = '(ab*)(ab)+'
-r = 'a(abb+|bb?a*)*ba|bba?a*'
+# r = 'a(abb+|bb?a*)ba|bba?a*'
+r = "a?(ab?|b**ab)++b*"
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -32,7 +33,6 @@ post = Postfix(r)
 new_infix = post.infix_Transformation()
 #obtencion de su postfix
 postfix = post.transform_postfix(new_infix)
-print(postfix)
 # print(postfix)
 # Construccion del arbol del postfix
 tree = Tree()
@@ -43,7 +43,6 @@ result = tree.left_most()
 afn = Thompson()
 #construir el afn
 afn_construido = afn.construccion_thompson(result)
-
 #mostrar el grafico del afn
 afn.afnGraph(afn_construido[0],afn_construido[1])
 

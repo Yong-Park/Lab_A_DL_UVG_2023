@@ -101,8 +101,8 @@ class Minimizacion():
         self.inicio = start
         self.final = end
 
-        print(self.inicio)
-        print(self.final)
+        # print(self.inicio)
+        # print(self.final)
                     
         #obtener sus transaciones de cada uno
         for value in self.P0:
@@ -122,12 +122,12 @@ class Minimizacion():
         return [self.finalTransaction,sfPoint]
 
     def minimizacionGraph(self,afdMinimizado,sfPoint):
-        print(sfPoint)
+        # print(sfPoint)
         inicio = sfPoint[0]
         final = sfPoint[1]
         q_list = []
         q = list(string.ascii_uppercase)
-        print(afdMinimizado)
+        # print(afdMinimizado)
 
         #guardar los valores de q utilizados
         for l in afdMinimizado:

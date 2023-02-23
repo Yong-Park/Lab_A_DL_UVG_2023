@@ -28,7 +28,7 @@ class Subset():
     
     def obtainElement(self):
         for l in self.elements:
-            if l not in ".*|ε+": 
+            if l not in ".*|ε+?": 
                 if l not in self.lenguaje:
                     self.lenguaje.append(l)
         

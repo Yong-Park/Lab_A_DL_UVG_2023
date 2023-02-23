@@ -1,68 +1,26 @@
 // afd Minimizado
 digraph {
 	A [fillcolor="#7fff00" style=filled]
-	B
+	B [fillcolor="#ee3b3b" shape=doublecircle style=filled]
 	C
 	F
-	I
-	D
-	X [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	N
-	T [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	W [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	J [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	V [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	S [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	O
-	P
-	R
-	U [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	E
-	G
-	L
-	K
+	H
+	E [fillcolor="#ee3b3b" shape=doublecircle style=filled]
+	G [fillcolor="#ee3b3b" shape=doublecircle style=filled]
 	"" [shape=plaintext]
 	"" -> A [label=""]
 	A -> B [label=a]
 	A -> C [label=b]
-	F -> C [label=a]
-	F -> I [label=b]
-	C -> C [label=a]
+	F -> H [label=a]
+	F -> E [label=b]
+	C -> F [label=a]
 	C -> C [label=b]
-	D -> C [label=a]
-	D -> F [label=b]
-	X -> X [label=a]
-	X -> N [label=b]
-	T -> W [label=a]
-	T -> T [label=b]
-	V -> J [label=a]
-	V -> J [label=b]
-	W -> X [label=a]
-	W -> S [label=b]
-	P -> O [label=a]
-	P -> T [label=b]
-	S -> V [label=a]
-	S -> R [label=b]
-	U -> W [label=a]
-	U -> P [label=b]
-	E -> G [label=a]
-	E -> G [label=b]
-	L -> O [label=a]
-	L -> P [label=b]
-	N -> G [label=a]
-	N -> R [label=b]
-	O -> K [label=a]
-	O -> S [label=b]
-	R -> K [label=a]
-	R -> U [label=b]
-	B -> D [label=a]
+	H -> H [label=a]
+	H -> H [label=b]
+	G -> F [label=a]
+	G -> G [label=b]
+	B -> B [label=a]
 	B -> E [label=b]
-	I -> K [label=a]
-	I -> L [label=b]
-	K -> K [label=a]
-	K -> N [label=b]
-	G -> C [label=a]
-	G -> J [label=b]
-	J -> J [label=a]
-	J -> C [label=b]
+	E -> B [label=a]
+	E -> G [label=b]
 }

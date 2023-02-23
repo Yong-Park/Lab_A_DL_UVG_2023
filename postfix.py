@@ -9,7 +9,7 @@ class Postfix:
 
     def infix_Transformation(self):
         #conversion de simbolos especiales antes
-        self.infix = re.sub("\.*?\?", lambda m: m.group().replace("?", "|ε"), self.infix)
+        # self.infix = re.sub("\.*?\?", lambda m: m.group().replace("?", "|ε"), self.infix)
 
         self.infix_array = []
         for value in range(len(self.infix)):
@@ -31,7 +31,7 @@ class Postfix:
                 if self.infix_array[value-1] in ".":
                     self.infix_array[value-1] =" "
                     
-            elif self.infix_array[value] in '*+':
+            elif self.infix_array[value] in '*+?':
                 if self.infix_array[value-1] in ".":
                     self.infix_array[value-1] =" "
                     
@@ -46,8 +46,8 @@ class Postfix:
             # print(self.data[l])
             if l-1 >= 0 :
                 if l+1 < len(self.data):
-                    if self.data[l] in '+*':
-                        if self.data[l-1] not in '+*.|(' and self.data[l+1] not in '*+(':
+                    if self.data[l] in '+*?':
+                        if self.data[l-1] not in '.|(' and self.data[l+1] not in '(':
                             pass
                             # print(self.data[l] in '+*')
                             # print(self.data[l-1] not in '+*.|(')
@@ -88,61 +88,164 @@ class Postfix:
             # print(l)
             # print("s: " + str(stack))
             # print("o: " + str(output))
-            if l in "|()*.+":
+            if l in "|()*.+?":
                 self.stack.append(l)
-
-                if l == ")":
-                    a = len(self.stack)-2
-                    while(self.stack[a] != "("):
-                        self.output.append(self.stack[a])
-                        self.stack[a]=""
-                        a = a-1
-                    self.stack[a] = ""
-                    self.stack[self.stack.index(")")] = ""
-                    while "" in self.stack:
-                        self.stack.remove("")
-                elif l == ".":
-                    if len(self.stack) > 1:
-                        # print("====================")
-                        # print("verdadero")
-                        # print("s: " + str(stack))
-                        # print("====================")
-                        if self.stack[len(self.stack)-2] == "*":
-                            self.output.append(self.stack[len(self.stack)-2])
-                            self.stack.pop(len(self.stack)-2)
-                        elif self.stack[len(self.stack)-2] == "+":
-                            self.output.append(self.stack[len(self.stack)-2])
-                            self.stack.pop(len(self.stack)-2)
-                        elif self.stack[len(self.stack)-2] == "|":
-                            self.output.append(self.stack[len(self.stack)-2])
-                            self.stack.pop(len(self.stack)-2)
-                        elif self.stack[len(self.stack)-2] == ".":
-                            self.output.append(self.stack[len(self.stack)-1])
-                            self.stack.pop(len(self.stack)-1)
-                elif l == "|":
-                    if len(self.stack) > 1:
-                        if self.stack[len(self.stack)-2] == "*":
-                            self.output.append(self.stack[len(self.stack)-2])
-                            self.stack.pop(len(self.stack)-2)
-                        elif self.stack[len(self.stack)-2] == "+":
-                            self.output.append(self.stack[len(self.stack)-2])
-                            self.stack.pop(len(self.stack)-2)
-                        elif self.stack[len(self.stack)-2] == "|":
-                            self.output.append(self.stack[len(self.stack)-1])
-                            self.stack.pop(len(self.stack)-1)
-                elif l =="*":
-                    if len(self.stack) > 1:
-                        if self.stack[len(self.stack)-2] == "*":
-                            self.output.append(self.stack[len(self.stack)-1])
-                            self.stack.pop(len(self.stack)-1)
-                        elif self.stack[len(self.stack)-2] == "+":
-                            self.output.append(self.stack[len(self.stack)-2])
-                            self.stack.pop(len(self.stack)-2)
-                elif l =="+":
-                    if len(self.stack) > 1:
-                        if self.stack[len(self.stack)-2] == "+":
-                            self.output.append(self.stack[len(self.stack)-1])
-                            self.stack.pop(len(self.stack)-1)   
+                # print("before stack: ", self.stack)
+                proceso = True
+                while(proceso):
+                    element = self.stack[len(self.stack)-1]
+                    if element == ")":
+                        a = len(self.stack)-2
+                        while(self.stack[a] != "("):
+                            self.output.append(self.stack[a])
+                            self.stack[a]=""
+                            a = a-1
+                        self.stack[a] = ""
+                        self.stack[self.stack.index(")")] = ""
+                        while "" in self.stack:
+                            self.stack.remove("")
+                        proceso = False
+                        
+                    elif element == "?":
+                        if len(self.stack) > 1:
+                            if self.stack[len(self.stack)-2] == "*":
+                                self.output.append(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
+                            elif self.stack[len(self.stack)-2] == "+":
+                                self.output.append(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
+                            elif self.stack[len(self.stack)-2] == "?":
+                                self.output.append(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
+                            else:
+                                proceso = False
+                        else:
+                            proceso = False
+                            
+                    elif element == "*":
+                        if len(self.stack) > 1:
+                            if self.stack[len(self.stack)-2] == "*":
+                                self.output.append(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
+                            elif self.stack[len(self.stack)-2] == "+":
+                                self.output.append(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
+                            elif self.stack[len(self.stack)-2] == "?":
+                                self.output.append(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
+                            else:
+                                proceso = False
+                        else:
+                            proceso = False
+                                
+                    elif element =="+":
+                        if len(self.stack) > 1:
+                            if self.stack[len(self.stack)-2] == "+":
+                                self.output.append(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1) 
+                            elif self.stack[len(self.stack)-2] == "*":
+                                self.output.append(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
+                            elif self.stack[len(self.stack)-2] == "?":
+                                self.output.append(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
+                            else:
+                                proceso = False
+                        else:
+                            proceso = False
+                                
+                    elif element == ".":
+                        if len(self.stack) > 1:
+                            if self.stack[len(self.stack)-2] == "*":
+                                self.output.append(self.stack[len(self.stack)-2])
+                                self.stack.pop(len(self.stack)-2)
+                            elif self.stack[len(self.stack)-2] == "+":
+                                self.output.append(self.stack[len(self.stack)-2])
+                                self.stack.pop(len(self.stack)-2)
+                            elif self.stack[len(self.stack)-2] == "?":
+                                self.output.append(self.stack[len(self.stack)-2])
+                                self.stack.pop(len(self.stack)-2)
+                            elif self.stack[len(self.stack)-2] == ".":
+                                self.output.append(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
+                            else:
+                                proceso = False
+                        else:
+                            proceso = False
+                                
+                    elif element == "|":
+                        if len(self.stack) > 1:
+                            if self.stack[len(self.stack)-2] == "*":
+                                self.output.append(self.stack[len(self.stack)-2])
+                                self.stack.pop(len(self.stack)-2)
+                            elif self.stack[len(self.stack)-2] == "+":
+                                self.output.append(self.stack[len(self.stack)-2])
+                                self.stack.pop(len(self.stack)-2)
+                            elif self.stack[len(self.stack)-2] == "?":
+                                self.output.append(self.stack[len(self.stack)-2])
+                                self.stack.pop(len(self.stack)-2)
+                            elif self.stack[len(self.stack)-2] == ".":
+                                self.output.append(self.stack[len(self.stack)-2])
+                                self.stack.pop(len(self.stack)-2)
+                            elif self.stack[len(self.stack)-2] == "|":
+                                self.output.append(self.stack[len(self.stack)-1])
+                                self.stack.pop(len(self.stack)-1)
+                            else:
+                                proceso = False
+                        else:
+                            proceso = False
+                    else:
+                        proceso = False
+                
+                # if l == ")":
+                #     a = len(self.stack)-2
+                #     while(self.stack[a] != "("):
+                #         self.output.append(self.stack[a])
+                #         self.stack[a]=""
+                #         a = a-1
+                #     self.stack[a] = ""
+                #     self.stack[self.stack.index(")")] = ""
+                #     while "" in self.stack:
+                #         self.stack.remove("")
+                # elif l =="*":
+                #     if len(self.stack) > 1:
+                #         if self.stack[len(self.stack)-2] == "*":
+                #             self.output.append(self.stack[len(self.stack)-1])
+                #             self.stack.pop(len(self.stack)-1)
+                        
+                # elif l =="+":
+                #     if len(self.stack) > 1:
+                #         if self.stack[len(self.stack)-2] == "+":
+                #             self.output.append(self.stack[len(self.stack)-1])
+                #             self.stack.pop(len(self.stack)-1) 
+                #         elif self.stack[len(self.stack)-2] == "*":
+                #             self.output.append(self.stack[len(self.stack)-2])
+                #             self.stack.pop(len(self.stack)-2)  
+                # elif l == ".":
+                #     if len(self.stack) > 1:
+                #         if self.stack[len(self.stack)-2] == "*":
+                #             self.output.append(self.stack[len(self.stack)-2])
+                #             self.stack.pop(len(self.stack)-2)
+                #         elif self.stack[len(self.stack)-2] == "+":
+                #             self.output.append(self.stack[len(self.stack)-2])
+                #             self.stack.pop(len(self.stack)-2)
+                #         elif self.stack[len(self.stack)-2] == ".":
+                #             self.output.append(self.stack[len(self.stack)-1])
+                #             self.stack.pop(len(self.stack)-1)
+                # elif l == "|":
+                #     if len(self.stack) > 1:
+                #         if self.stack[len(self.stack)-2] == "*":
+                #             self.output.append(self.stack[len(self.stack)-2])
+                #             self.stack.pop(len(self.stack)-2)
+                #         elif self.stack[len(self.stack)-2] == "+":
+                #             self.output.append(self.stack[len(self.stack)-2])
+                #             self.stack.pop(len(self.stack)-2)
+                #         elif self.stack[len(self.stack)-2] == ".":
+                #             self.output.append(self.stack[len(self.stack)-2])
+                #             self.stack.pop(len(self.stack)-2)
+                #         elif self.stack[len(self.stack)-2] == "|":
+                #             self.output.append(self.stack[len(self.stack)-1])
+                #             self.stack.pop(len(self.stack)-1)
             else:
                 self.output.append(l)
             # print("stack: ", self.stack)
