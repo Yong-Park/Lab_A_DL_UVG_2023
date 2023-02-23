@@ -1,4 +1,7 @@
 import string
+import graphviz
+import os
+os.environ["PATH"] += os.pathsep + 'D:/Program Files (x86)/Graphviz2.38/bin/'
 
 class Minimizacion():
     def __init__(self,afd,sfpoint):
@@ -11,8 +14,6 @@ class Minimizacion():
         self.alfabeto = []
         self.finalTransaction = []
         self.obtainValues()
-        self.startFunction()
-        
         
     def obtainValues(self):
         #guardar las cadenas segun son terminales o no
@@ -37,70 +38,71 @@ class Minimizacion():
                 if element[1] not in self.alfabeto:
                     self.alfabeto.append(element[1])
                     
-        print(self.P0)
+        # print(self.P0)
         
     def startFunction(self):
-        contador = 1
         largo = 0
         while(largo != len(self.P0)):
             largo = len(self.P0)
-            
             #comenzar con la rotacion de equivalentes
             for x in self.P0:
                 tabla = []
-                print("x: ", x)
+                # print("x: ", x)
                 if len(x) > 1:
                     for y in x:
+                        conjuntos = []
+                        conjuntos.append(y)
                         for alfa in self.alfabeto:
-                            conjuntos = []
-                            conjuntos.append(y)
+                            movement = []
                             for transaction in self.afd:
                                 if transaction[0] == y and transaction[1] == alfa:
-                                    conjuntos.append(alfa)
+                                    movement.append(alfa)
                                     for w in range(len(self.P0)):
                                         if transaction[2] in self.P0[w]:
-                                            conjuntos.append(w)
-                                            if conjuntos not in tabla:
-                                                tabla.append(conjuntos)
-                    print("tabla: ", tabla)
+                                            movement.append(w)
+                                            conjuntos.append(movement)
+                        if conjuntos not in tabla:
+                            tabla.append(conjuntos)
+                    # print("tabla: ", tabla)
                     
                     #juntarlos por sus similitudes
-                    
-                    grupos = {}
+                    groups = {}
 
-                    for estado in tabla:
-                        letra = estado[1]
-                        valor = estado[2]
-                        clave = f"{letra}_{valor}"
-                        if clave in grupos:
-                            if estado[0] not in grupos[clave]:
-                                grupos[clave].append(estado[0])
+                    # Recorremos la lista y agrupamos los elementos según la condición especificada
+                    for item in tabla:
+                        key = tuple([subitem[1] for subitem in item[1:]])
+                        if key in groups:
+                            groups[key].append(item[0])
                         else:
-                            grupos[clave] = [estado[0]]
+                            groups[key] = [item[0]]
 
-                    resultado = [v for v in grupos.values() if len(v) > 1]
-
-                    print(resultado)
-                    break
+                    # Convertimos el diccionario en una lista de listas
+                    result = [group for group in groups.values()]
                     
                     self.P0.remove(x)
-                    self.P0.extend(resultado)
+                    self.P0.extend(result)
 
-                    print("Resultados: ", resultado)
+                    # print("Resultados: ", result)
 
                                                 
-                    print("P0: ", self.P0)
-                    print("=====================")
-                    
+        #             print("P0: ", self.P0)
+        #             print("=====================")
+        # print("final: ", self.final)
+        # print("inicio: ", self.inicio)
+        start = []
+        end = []
         #obtener los nuevos iniciales y finales
-        for x in self.P0:
-            if len(x) > 1:
-                if self.final in x:
-                    print("si esta el final")
-                    self.final = [x[0]]
-                elif self.inicio in x:
-                    print("si esta el inicio")
-                    self.inicio = [x[0]]
+        for item in self.P0:
+            if any(x in self.final for x in item):
+                end.append(item[0])
+            elif any(x in self.inicio for x in item):
+                start.append(item[0])
+        #se guardan los nuevos iniciales y finales correspondientes
+        self.inicio = start
+        self.final = end
+
+        print(self.inicio)
+        print(self.final)
                     
         #obtener sus transaciones de cada uno
         for value in self.P0:
@@ -111,9 +113,50 @@ class Minimizacion():
                             if transaction[2] in inside:
                                 self.finalTransaction.append([transaction[0],transaction[1],inside[0]])
         
-        print(self.inicio)
-        print(self.final)       
-        print(self.finalTransaction)
+        # print(self.inicio)
+        # print(self.final)
+        sfPoint=[]
+        sfPoint.append(self.inicio)
+        sfPoint.append(self.final)    
+        # print(self.finalTransaction)
+        return [self.finalTransaction,sfPoint]
+
+    def minimizacionGraph(self,afdMinimizado,sfPoint):
+        print(sfPoint)
+        inicio = sfPoint[0]
+        final = sfPoint[1]
+        q_list = []
+        q = list(string.ascii_uppercase)
+        print(afdMinimizado)
+
+        #guardar los valores de q utilizados
+        for l in afdMinimizado:
+            for q_search in q:
+                if q_search in l:
+                    if q_search not in q_list:
+                        q_list.append(q_search)
+
+        f = graphviz.Digraph(comment = "afd Minimizado")
+        inicio_listo = True
+        
+        for name in q_list:
+            if name in final:
+                f.node(str(name), shape="doublecircle",fillcolor="#ee3b3b",style="filled")
+            elif name in inicio:
+                f.node(str(name),fillcolor="#7fff00",style="filled")
+            else:
+                f.node(str(name))
+        f.node("", shape="plaintext")
+        for l in afdMinimizado:
+            for val in inicio:
+                if val in l and l[0] == val:
+                    if(inicio_listo):
+                        f.edge("",str(l[0]),label = "")
+                        inicio_listo = False
+            f.edge(str(l[0]),str(l[2]),label = str(l[1]))
+            
+        f.render("afd Minimizado", view = True)
+
                         
                     
                     
