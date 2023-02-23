@@ -6,7 +6,7 @@ from simulation import *
 from minimizacion import *
 
 #lenguaje
-# r = '(a|b)*abb'
+r = '(a|b)*abb'
 # r = '(a|)*abb'
 # r = 'ab(a|b*)ab*ba'
 # r = 'ab(abba|bbb*)aab*baba|a'
@@ -24,7 +24,7 @@ from minimizacion import *
 # r = 'a+(a?|)*b'
 # r = 'ab'
 # r = '(ab*)(ab)+'
-r = 'a(abb+|bb?a*)ba|bba?a*'
+r = 'a(abb+|bb?a*)*ba|bba?a*'
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -32,6 +32,7 @@ post = Postfix(r)
 new_infix = post.infix_Transformation()
 #obtencion de su postfix
 postfix = post.transform_postfix(new_infix)
+print(postfix)
 # print(postfix)
 # Construccion del arbol del postfix
 tree = Tree()
