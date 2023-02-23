@@ -74,19 +74,30 @@ class Thompson:
         self.list.pop(len(self.list)-1)
     
     def andFunction(self):
+        print("afdn: ", self.afn)
+        print("cadena: ", self.cadena)
+        print("cadena fl: ",self.cadena_fl)
         #en lista crear agregar como uno por medio de extend
         for sublista in self.cadena:
             self.lista.extend(sublista)
+
+        print("lista: ",self.lista)
         #crear la conexion entre las dos 
+        # replace = self.cadena_fl[len(self.cadena_fl)-1][0]
+        # replaced = self.cadena_fl[len(self.cadena_fl)-2][1]
+        # self.cadena_fl[len(self.cadena_fl)-1][0] = replaced
+        
         self.chain.append(self.cadena_fl[len(self.cadena_fl)-2][1]) #utilizar el nodo final del primero
         self.chain.append(self.eps)
         self.chain.append(self.cadena_fl[len(self.cadena_fl)-1][0]) #utilizar el nodo primario del segundo
         self.lista.append(self.chain)
         self.afn.append(self.chain)
         self.chain = []
+        print("afdn: ", self.afn)
 
         self.cadena.append(self.lista) #agregar la nueva que esta unificada por medio de exten
         self.lista = []
+        print("cadena: ", self.cadena)
 
         #eliminar los dos anteriores al nuevo agregado
         self.cadena.pop(len(self.cadena)-2)

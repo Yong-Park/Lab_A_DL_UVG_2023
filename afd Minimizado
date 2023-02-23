@@ -1,17 +1,17 @@
 // afd Minimizado
 digraph {
+	C
+	D [fillcolor="#ee3b3b" shape=doublecircle style=filled]
 	B
-	E [fillcolor="#ee3b3b" shape=doublecircle style=filled]
 	A [fillcolor="#7fff00" style=filled]
-	D
 	"" [shape=plaintext]
-	E -> B [label=a]
-	E -> A [label=b]
-	D -> B [label=a]
-	D -> E [label=b]
-	B -> B [label=a]
+	D -> C [label=a]
+	D -> C [label=b]
+	B -> C [label=a]
 	B -> D [label=b]
 	"" -> A [label=""]
 	A -> B [label=a]
-	A -> A [label=b]
+	A -> C [label=b]
+	C -> C [label=a]
+	C -> C [label=b]
 }

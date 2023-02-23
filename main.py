@@ -6,7 +6,7 @@ from simulation import *
 from minimizacion import *
 
 #lenguaje
-r = '(a|b)*abb'
+# r = '(a|b)*abb'
 # r = '(a|)*abb'
 # r = 'ab(a|b*)ab*ba'
 # r = 'ab(abba|bbb*)aab*baba|a'
@@ -22,6 +22,7 @@ r = '(a|b)*abb'
 # r = 'a+(a?|b)*b'
 # r = '*a'
 # r = 'a+(a?|)*b'
+r = 'ab'
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -39,21 +40,22 @@ result = tree.left_most()
 afn = Thompson()
 #construir el afn
 afn_construido = afn.construccion_thompson(result)
-#mostrar el grafico del afn
-afn.afnGraph(afn_construido[0],afn_construido[1])
 
-#comenzar la utilizacion de subset alimentarlo con el afn, y los inicales y finales y tambien el postfix
-subset = Subset(afn_construido[0],afn_construido[1],postfix)
-#comenzar la construccion por medio de subset
-afd = subset.afnConstruction()
-#construir el grafo del afn
-subset.afdGraph(afd[0],afd[1])
+# #mostrar el grafico del afn
+# afn.afnGraph(afn_construido[0],afn_construido[1])
 
-#realizar la minimizacion del afd
-minimizacion = Minimizacion(afd[0],afd[1])
-afdMinimzado = minimizacion.startFunction()
+# #comenzar la utilizacion de subset alimentarlo con el afn, y los inicales y finales y tambien el postfix
+# subset = Subset(afn_construido[0],afn_construido[1],postfix)
+# #comenzar la construccion por medio de subset
+# afd = subset.afnConstruction()
+# #construir el grafo del afn
+# subset.afdGraph(afd[0],afd[1])
 
-minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
+# #realizar la minimizacion del afd
+# minimizacion = Minimizacion(afd[0],afd[1])
+# afdMinimzado = minimizacion.startFunction()
+
+# minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
 
 # #comenzar con la simulacion para afn y afd
 # simulation = Simulation()
