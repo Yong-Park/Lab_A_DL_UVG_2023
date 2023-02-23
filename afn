@@ -1,25 +1,81 @@
 // afn
 digraph {
-	0 [fillcolor="#7fff00" style=filled]
+	0
 	1
-	2
 	3
 	5
 	6
 	7
+	8
 	9
-	11 [fillcolor="#ee3b3b" shape=doublecircle style=filled]
+	10
+	11
+	13
+	14
+	15
+	16
+	17
+	19
+	20
+	21
+	23
+	25
+	27
+	28
+	29
+	31
+	33
+	34
+	35
+	36
+	37
+	39
+	40
+	41
+	42 [fillcolor="#7fff00" style=filled]
+	43 [fillcolor="#ee3b3b" shape=doublecircle style=filled]
 	"" [shape=plaintext]
-	"" -> 0 [label=""]
 	0 -> 1 [label=a]
-	2 -> 3 [label=b]
-	1 -> 2 [label="ε"]
-	3 -> 5 [label="ε"]
-	1 -> 5 [label="ε"]
-	3 -> 2 [label="ε"]
-	6 -> 7 [label=a]
-	7 -> 9 [label=b]
-	5 -> 6 [label="ε"]
-	9 -> 11 [label="ε"]
-	9 -> 6 [label="ε"]
+	1 -> 3 [label=a]
+	3 -> 5 [label=b]
+	6 -> 7 [label=b]
+	8 -> 6 [label="ε"]
+	7 -> 9 [label="ε"]
+	7 -> 6 [label="ε"]
+	10 -> 11 [label=b]
+	11 -> 13 [label=b]
+	14 -> 15 [label="ε"]
+	16 -> 17 [label=a]
+	15 -> 16 [label="ε"]
+	17 -> 19 [label="ε"]
+	15 -> 19 [label="ε"]
+	17 -> 16 [label="ε"]
+	20 -> 10 [label="ε"]
+	20 -> 14 [label="ε"]
+	13 -> 21 [label="ε"]
+	19 -> 21 [label="ε"]
+	5 -> 8 [label="ε"]
+	5 -> 20 [label="ε"]
+	9 -> 23 [label="ε"]
+	21 -> 23 [label="ε"]
+	23 -> 25 [label=b]
+	25 -> 27 [label=a]
+	28 -> 29 [label=b]
+	29 -> 31 [label=b]
+	31 -> 33 [label=a]
+	34 -> 35 [label="ε"]
+	36 -> 37 [label=a]
+	35 -> 36 [label="ε"]
+	37 -> 39 [label="ε"]
+	35 -> 39 [label="ε"]
+	37 -> 36 [label="ε"]
+	40 -> 28 [label="ε"]
+	40 -> 34 [label="ε"]
+	33 -> 41 [label="ε"]
+	39 -> 41 [label="ε"]
+	"" -> 42 [label=""]
+	42 -> 0 [label="ε"]
+	42 -> 40 [label="ε"]
+	27 -> 43 [label="ε"]
+	41 -> 43 [label="ε"]
 }

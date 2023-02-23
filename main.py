@@ -16,14 +16,15 @@ from minimizacion import *
 # r = "(a|b)*(a|b)"
 # r ="(b|b)*abb(a|b)*"
 # r = "(ab)?"
-r = "0?(1?)?0*"
+# r = "0?(1?)?0*"
 # r = "(ab+)?"
 # r ='(aa)?'
 # r = 'a+(a?|b)*b'
 # r = '*a'
 # r = 'a+(a?|)*b'
 # r = 'ab'
-r = '(ab*)(ab)+'
+# r = '(ab*)(ab)+'
+r = 'a(abb+|bb?a*)ba|bba?a*'
 
 #comenzar para convertirlo 
 post = Postfix(r)
