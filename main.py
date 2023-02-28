@@ -4,6 +4,7 @@ from thompson_v2 import *
 from subset import *
 from simulation import *
 from minimizacion import *
+from DirectAFD import *
 
 #lenguaje
 # r = '(a|b)*abb'
@@ -25,7 +26,9 @@ from minimizacion import *
 # r = 'ab'
 # r = '(ab*)(ab)+'
 # r = 'a(abb+|bb?a*)ba|bba?a*'
-r = "a?(ab?|b**ab)++b*"
+# r = "a?(ab?|b**ab)++b*"
+r = '(a|b)*abb'
+# r = 'a(a?b*|c+)b|baa'
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -39,25 +42,29 @@ tree = Tree()
 tree.build_tree_from_postfix(postfix)
 # obtener la lectura desde el left most utilizando el arbol construido
 result = tree.left_most()
-#comenzar con la construccion de thompson
-afn = Thompson()
-#construir el afn
-afn_construido = afn.construccion_thompson(result)
-#mostrar el grafico del afn
-afn.afnGraph(afn_construido[0],afn_construido[1])
 
-#comenzar la utilizacion de subset alimentarlo con el afn, y los inicales y finales y tambien el postfix
-subset = Subset(afn_construido[0],afn_construido[1],postfix)
-#comenzar la construccion por medio de subset
-afd = subset.afnConstruction()
-#construir el grafo del afn
-subset.afdGraph(afd[0],afd[1])
+# #comenzar con la construccion de thompson
+# afn = Thompson()
+# #construir el afn
+# afn_construido = afn.construccion_thompson(result)
+# #mostrar el grafico del afn
+# afn.afnGraph(afn_construido[0],afn_construido[1])
 
-#realizar la minimizacion del afd
-minimizacion = Minimizacion(afd[0],afd[1])
-afdMinimzado = minimizacion.startFunction()
+# #comenzar la utilizacion de subset alimentarlo con el afn, y los inicales y finales y tambien el postfix
+# subset = Subset(afn_construido[0],afn_construido[1],postfix)
+# #comenzar la construccion por medio de subset
+# afd = subset.afnConstruction()
+# #construir el grafo del afn
+# subset.afdGraph(afd[0],afd[1])
 
-minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
+# #realizar la minimizacion del afd
+# minimizacion = Minimizacion(afd[0],afd[1])
+# afdMinimzado = minimizacion.startFunction()
+
+# minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
+
+#realizar el afd directo desde la expresion regular
+afdDirecto = DirectAfd(result)
 
 #comenzar con la simulacion para afn y afd
 simulation = Simulation()
