@@ -85,9 +85,19 @@ class DirectAfd:
                         last.extend(self.lastPos[len(self.lastPos)-1])
                         self.lastPos.append(last)
                 elif node == '?':
-                    pass
+                    self.nullable.append(True)
+                    self.firstPos.append(self.firstPos[len(self.firstPos)-1])
+                    self.lastPos.append(self.lastPos[len(self.lastPos)-1])
                 elif node == '+':
-                    pass
+                    #revisar si es nullabel
+                    c1 = self.nullable[len(self.nullable)-1]
+                    if c1 == True:
+                        self.nullable.append(True)
+                    else:
+                        self.nullable.append(False)
+                    #insertar el firstpos y lastpos
+                    self.firstPos.append(self.firstPos[len(self.firstPos)-1])
+                    self.lastPos.append(self.lastPos[len(self.lastPos)-1])
                 elif node == 'ε':
                     self.nullable.append(True)
                     self.firstPos.append('∅')
