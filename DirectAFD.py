@@ -112,3 +112,5 @@ class DirectAfd:
         print("firstpos: ", self.firstPos)
         print("lastpos: ", self.lastPos)
         
+    def follopostConstruct(self):
+        pass
