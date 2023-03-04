@@ -13,6 +13,7 @@ class DirectAfd:
         self.q = []
         self.enumerate()
         self.startConstruct()
+        self.follopostConstruct()
     
     #en este se enumeraran los estados correspondientes
     def enumerate(self):
@@ -113,4 +114,58 @@ class DirectAfd:
         print("lastpos: ", self.lastPos)
         
     def follopostConstruct(self):
-        pass
+        #guardar todos los valores para el followpost
+        for val in range(len(self.newPostfix)):
+            if str(self.newPostfix[val]) not in "*?.+|":
+                self.followPos.append([self.newPostfix[val]])
+                
+        for val in range(len(self.newPostfix)):
+            isnodes = []
+            addnodes = []
+            
+            if self.newPostfix[val] == "*":
+                isnodes.extend(self.lastPos[val])
+                addnodes.extend(self.firstPos[val])
+                
+                for nod in range(len(self.followPos)):
+                    if self.followPos[nod][0] in isnodes:
+                        if len(self.followPos[nod]) > 1:
+                            for x in addnodes:
+                                if x not in self.followPos[nod][1]:
+                                    self.followPos[nod][1].extend(addnodes)
+                        else:
+                            self.followPos[nod].append(addnodes)
+                            
+            elif self.newPostfix[val] == "+":
+                isnodes.extend(self.lastPos[val])
+                addnodes.extend(self.firstPos[val])
+                
+                for nod in range(len(self.followPos)):
+                    if self.followPos[nod][0] in isnodes:
+                        if len(self.followPos[nod]) > 1:
+                            for x in addnodes:
+                                if x not in self.followPos[nod][1]:
+                                    self.followPos[nod][1].extend(addnodes)
+                        else:
+                            self.followPos[nod].append(addnodes)
+            
+            elif self.newPostfix[val] == ".":
+                c1 = val - 2
+                c2 = val - 1
+                isnodes.extend(self.lastPos[c1])
+                addnodes.extend(self.firstPos[c2])
+                
+                for nod in range(len(self.followPos)):
+                    if self.followPos[nod][0] in isnodes:
+                        if len(self.followPos[nod]) > 1:
+                            for x in addnodes:
+                                if x not in self.followPos[nod][1]:
+                                    self.followPos[nod][1].extend(addnodes)
+                        else:
+                            self.followPos[nod].append(addnodes)
+                            
+                            
+        #agregar el ultimo un signo ∅ ya que es el # 
+        self.followPos[len(self.followPos)-1].append(["∅"])
+        
+        print(self.followPos)
