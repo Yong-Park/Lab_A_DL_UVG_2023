@@ -12,6 +12,10 @@ class DirectAfd:
         # Nueva lista vacía que se utiliza para ordenar correspondientemente cuando se obtienen los valores
         self.nueva_lista = []
 
+        self.deletable_firstPos = []
+        self.deletable_lastPos = []
+        self.deletable_nullable = []
+
         self.newPostfix = []
         self.nullable= []
         self.firstPos= []
@@ -115,10 +119,14 @@ class DirectAfd:
                 self.firstPos.append([node])
                 self.lastPos.append([node])
 
-        # print("node: ", self.newPostfix)
-        # print("nullable: ", self.nullable)
-        # print("firstpos: ", self.firstPos)
-        # print("lastpos: ", self.lastPos)
+                self.deletable_nullable.append(False)
+                self.deletable_firstPos.append([node])
+                self.deletable_lastPos.append([node])
+
+        print("node: ", self.newPostfix)
+        print("nullable: ", self.nullable)
+        print("firstpos: ", self.firstPos)
+        print("lastpos: ", self.lastPos)
         
     def follopostConstruct(self):
         #guardar todos los valores para el followpost
@@ -175,10 +183,11 @@ class DirectAfd:
         #agregar el ultimo un signo ∅ ya que es el # 
         self.followPos[len(self.followPos)-1].append(["∅"])
         
-        # print("followpos: ",self.followPos)
+        print("followpos: ",self.followPos)
         
     def Dstate(self):
         #nodo inicial
+        # print(self.followPos)
         sNode = self.followPos[0][1]
         #nodo final
         final = self.followPos[len(self.followPos)-1][0]

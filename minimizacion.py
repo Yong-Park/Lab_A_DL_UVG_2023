@@ -82,7 +82,7 @@ class Minimizacion():
                     self.P0.remove(x)
                     self.P0.extend(result)
 
-                    # print("Resultados: ", result)
+        #             print("Resultados: ", result)
 
                                                 
         #             print("P0: ", self.P0)

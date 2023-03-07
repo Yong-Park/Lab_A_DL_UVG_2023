@@ -9,7 +9,7 @@ class Simulation:
         caminos.append(point)
 
         for l in afn:
-            pass
+            print(l)
     def afdSimulation(self):
         pass
     

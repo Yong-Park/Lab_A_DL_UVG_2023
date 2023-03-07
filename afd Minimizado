@@ -1,17 +1,41 @@
 // afd Minimizado
 digraph {
-	B
-	E [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	A [fillcolor="#7fff00" style=filled]
+	H
+	I [fillcolor="#ee3b3b" shape=doublecircle style=filled]
 	D
+	A [fillcolor="#7fff00" style=filled]
+	B
+	C
+	F [fillcolor="#ee3b3b" shape=doublecircle style=filled]
+	E
+	G
 	"" [shape=plaintext]
-	E -> B [label=a]
-	E -> A [label=b]
-	D -> B [label=a]
-	D -> E [label=b]
-	B -> B [label=a]
-	B -> D [label=b]
+	H -> I [label=a]
+	H -> D [label=b]
+	H -> D [label=c]
 	"" -> A [label=""]
 	A -> B [label=a]
-	A -> A [label=b]
+	A -> C [label=b]
+	A -> D [label=c]
+	C -> H [label=a]
+	C -> D [label=b]
+	C -> D [label=c]
+	D -> D [label=a]
+	D -> D [label=b]
+	D -> D [label=c]
+	F -> D [label=a]
+	F -> F [label=b]
+	F -> D [label=c]
+	B -> E [label=a]
+	B -> F [label=b]
+	B -> G [label=c]
+	E -> D [label=a]
+	E -> F [label=b]
+	E -> D [label=c]
+	G -> D [label=a]
+	G -> I [label=b]
+	G -> G [label=c]
+	I -> D [label=a]
+	I -> D [label=b]
+	I -> D [label=c]
 }

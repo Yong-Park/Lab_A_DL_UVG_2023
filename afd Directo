@@ -2,16 +2,28 @@
 digraph {
 	A [fillcolor="#7fff00" style=filled]
 	B
-	C
-	D [fillcolor="#ee3b3b" shape=doublecircle style=filled]
+	C [fillcolor="#ee3b3b" shape=doublecircle style=filled]
+	D
+	E
+	F [fillcolor="#ee3b3b" shape=doublecircle style=filled]
 	"" [shape=plaintext]
 	"" -> A [label=""]
 	A -> B [label=a]
-	A -> A [label=b]
-	B -> B [label=a]
+	A -> C [label=b]
+	A -> D [label=c]
+	B -> E [label=a]
 	B -> C [label=b]
-	C -> B [label=a]
-	C -> D [label=b]
-	D -> B [label=a]
-	D -> A [label=b]
+	B -> E [label=c]
+	C -> E [label=a]
+	C -> C [label=b]
+	C -> E [label=c]
+	D -> E [label=a]
+	D -> F [label=b]
+	D -> D [label=c]
+	E -> E [label=a]
+	E -> E [label=b]
+	E -> E [label=c]
+	F -> E [label=a]
+	F -> E [label=b]
+	F -> E [label=c]
 }
