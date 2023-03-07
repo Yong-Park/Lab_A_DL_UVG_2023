@@ -48,27 +48,42 @@ afn = Thompson()
 #construir el afn
 afn_construido = afn.construccion_thompson(result)
 #mostrar el grafico del afn
-afn.afnGraph(afn_construido[0],afn_construido[1])
+# afn.afnGraph(afn_construido[0],afn_construido[1])
 
 #comenzar la utilizacion de subset alimentarlo con el afn, y los inicales y finales y tambien el postfix
 subset = Subset(afn_construido[0],afn_construido[1],postfix)
 #comenzar la construccion por medio de subset
 afd = subset.afnConstruction()
 #construir el grafo del afn
-subset.afdGraph(afd[0],afd[1])
+# subset.afdGraph(afd[0],afd[1])
 
 #realizar la minimizacion del afd
 minimizacion = Minimizacion(afd[0],afd[1])
 afdMinimzado = minimizacion.startFunction()
-
-minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
+# minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
 
 #realizar el afd directo desde la expresion regular
 afdDirecto = DirectAfd(result)
 direct = afdDirecto.Dstate()
-afdDirecto.DirectGraph(direct[0],direct[1])
+# afdDirecto.DirectGraph(direct[0],direct[1])
 
+
+#cadena de lenguaje para su aceptacion
+w = 'ababbaabb'
 #comenzar con la simulacion para afn y afd
+print("________AFN__________")
+print(afn_construido[0])
+print(afn_construido[1])
+print("_________AFD_________")
+print(afd[0])
+print(afd[1])
+print("__________MINIMIZACION________")
+print(afdMinimzado[0])
+print(afdMinimzado[1])
+print("__________DIRECTO________")
+print(direct[0])
+print(direct[1])
 simulation = Simulation()
+simulation.afnSimulation(afn_construido[0],afn_construido[1])
 
 
