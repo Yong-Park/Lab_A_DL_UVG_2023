@@ -27,8 +27,8 @@ from DirectAFDv2 import *
 # r = '(ab*)(ab)+'
 # r = 'a(abb+|bb?a*)ba|bba?a*'
 # r = "a?(ab?|b**ab)++b*"
-# r = '(a|b)*abb'
-r = 'a(a?b*|c+)b|baa'
+r = '(a|b)*abb'
+# r = 'a(a?b*|c+)b|baa'
 # r = '(a|b)(a|b)*ab(c?)'
 
 #comenzar para convertirlo 
@@ -41,7 +41,7 @@ postfix = post.transform_postfix(new_infix)
 # Construccion del arbol del postfix
 tree = Tree()
 tree.build_tree_from_postfix(postfix)
-tree.print_tree()
+# tree.print_tree()
 # obtener la lectura desde el left most utilizando el arbol construido
 result = tree.left_most()
 
@@ -50,14 +50,15 @@ afn = Thompson()
 #construir el afn
 afn_construido = afn.construccion_thompson(result)
 #mostrar el grafico del afn
-# afn.afnGraph(afn_construido[0],afn_construido[1])
+afn.afnGraph(afn_construido[0],afn_construido[1])
 
 #comenzar la utilizacion de subset alimentarlo con el afn, y los inicales y finales y tambien el postfix
 subset = Subset(afn_construido[0],afn_construido[1],postfix)
 #comenzar la construccion por medio de subset
 afd = subset.afnConstruction()
+print(afd[1])
 #construir el grafo del afn
-# subset.afdGraph(afd[0],afd[1])
+subset.afdGraph(afd[0],afd[1])
 
 #realizar la minimizacion del afd
 minimizacion = Minimizacion(afd[0],afd[1])

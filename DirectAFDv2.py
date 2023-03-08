@@ -44,7 +44,7 @@ class DirectAfd:
 
     #se comenzara a armar lo necesario para obtner los conjuntos y asi en los que eston van a viajar
     def startConstruct(self):
-        print(self.postfix)
+        # print(self.postfix)
         for node in self.newPostfix:
             # print("node: ", node)
             if str(node) in '*|.?+ε':
@@ -215,11 +215,11 @@ class DirectAfd:
         # print("lastpos: ", self.lastPos)
         
     def follopostConstruct(self):
-        print("_________________Followpost construct________")
+        # print("_________________Followpost construct________")
         #limpiar los deletable
         self.deletable_firstPos = []
         self.deletable_lastPos = []
-        print(self.newPostfix)
+        # print(self.newPostfix)
 
         #guardar todos los valores para el followpost
         for val in range(len(self.newPostfix)):
@@ -227,15 +227,15 @@ class DirectAfd:
                 self.followPos.append([self.newPostfix[val]])
         
         for val in range(len(self.newPostfix)):
-            print(self.newPostfix[val])     
+            # print(self.newPostfix[val])     
             isnodes = []
             addnodes = []
             
             if self.newPostfix[val] == "*":
                 isnodes.extend(self.deletable_lastPos[len(self.deletable_lastPos)-1])
                 addnodes.extend(self.deletable_firstPos[len(self.deletable_firstPos)-1])
-                print("isnodes: ",isnodes )
-                print("addnodes: ",addnodes )
+                # print("isnodes: ",isnodes )
+                # print("addnodes: ",addnodes )
                 
                 for nod in range(len(self.followPos)):
                     if self.followPos[nod][0] in isnodes:
@@ -256,8 +256,8 @@ class DirectAfd:
             elif self.newPostfix[val] == "+":
                 isnodes.extend(self.deletable_lastPos[len(self.deletable_lastPos)-1])
                 addnodes.extend(self.deletable_firstPos[len(self.deletable_firstPos)-1])
-                print("isnodes: ",isnodes )
-                print("addnodes: ",addnodes )
+                # print("isnodes: ",isnodes )
+                # print("addnodes: ",addnodes )
                 
                 for nod in range(len(self.followPos)):
                     if self.followPos[nod][0] in isnodes:
@@ -280,8 +280,8 @@ class DirectAfd:
                 c2 = self.deletable_firstPos[len(self.deletable_firstPos)-1]
                 isnodes.extend(c1)
                 addnodes.extend(c2)
-                print("isnodes: ",isnodes )
-                print("addnodes: ",addnodes )
+                # print("isnodes: ",isnodes )
+                # print("addnodes: ",addnodes )
                 
                 for nod in range(len(self.followPos)):
                     if self.followPos[nod][0] in isnodes:
@@ -366,22 +366,25 @@ class DirectAfd:
                 self.deletable_firstPos.append(self.firstPos[val])
                 self.deletable_lastPos.append(self.lastPos[val])
 
-            print("follopos: ", self.followPos)
-            print("fistpos deletable: ",self.deletable_firstPos)
-            print("lastpost deletable: ",self.deletable_lastPos)
+            # print("follopos: ", self.followPos)
+            # print("fistpos deletable: ",self.deletable_firstPos)
+            # print("lastpost deletable: ",self.deletable_lastPos)
                             
         #agregar el ultimo un signo ∅ ya que es el # 
         self.followPos[len(self.followPos)-1].append(["∅"])
-        print("___________")
-        print("followpos: ",self.followPos)
+        # print("___________")
+        # print("followpos: ",self.followPos)
         
     def Dstate(self):
         #nodo inicial
         # print(self.postfix)
         # print(self.followPos)
         sNode = self.followPos[0][1]
+        # print("snode: ", sNode)
+        # print("followpos: ", self.followPos)
         #nodo final
         final = self.followPos[len(self.followPos)-1][0]
+        # print("final: ", final)
         #aqui tendra todos los nodos de los cuales viajara
         P0 = []
         P0.append(sNode)
@@ -399,7 +402,7 @@ class DirectAfd:
             conjuntos = []
             conjuntos.append(x)
             for alfa in self.variables:  #a, b
-                # print("alfa: ",alfa)
+                # print("\nalfa: ",alfa)
                 movement = []
                 movement.append(alfa)
                 con = []
@@ -415,20 +418,27 @@ class DirectAfd:
                                             con.append(z)
                 con.sort
                 # print("con: ",con)
-                if con not in P0:
+                if con not in P0 and len(con) != 0:
                     P0.append(con)
-                movement.append(con)
+                if len(con) != 0:
+                    movement.append(con)
+                    conjuntos.append(movement)
                 # print("movement: ",movement)
-                conjuntos.append(movement)
                 # print("conjuntos: ", conjuntos)
                 if conjuntos not in tabla:
                     tabla.append(conjuntos)
+        #     print("________")
         # print("tabla: ", tabla)
-
+        # convertilos en el parametro correcto
         for sub_array in tabla:
-            for i in range(1, len(sub_array)):
-                new_element = [sub_array[0], sub_array[i][0], sub_array[i][1]]
-                self.nueva_lista.append(new_element)
+            if len(sub_array) > 1:
+                for i in range(1,len(sub_array)):
+                    # print(sub_array)
+                    # print(len(sub_array))
+                    new_element = [sub_array[0], sub_array[i][0], sub_array[i][1]]
+                    self.nueva_lista.append(new_element)
+            else:
+                self.nueva_lista.append(sub_array)
 
         # Impresión de la nueva lista
         # print("nueva lista: ", self.nueva_lista)
@@ -446,18 +456,31 @@ class DirectAfd:
         # print("alfanode: ",alfanode)
         
         #comenzar a reemplazarlo por alfabetos
+        # print("nueva lista: ", self.nueva_lista)
         for x in self.nueva_lista:
-            for y in range(len(node)):
-                if x[0] == node[y]:
-                    x[0] = alfanode[y]
-                if x[2] == node[y]:
-                    x[2] = alfanode[y]
+            # print("x: ", x)
+            if len(x) > 1:
+                for y in range(len(node)):
+                    # print(node[y])
+                    # print(len(node[y]))
+                    if x[0] == node[y]:
+                        x[0] = alfanode[y]
+                    if x[2] == node[y]:
+                        x[2] = alfanode[y]
+            else:
+                for y in range(len(node)):
+                    # print(node[y])
+                    # print(len(node[y]))
+                    if x[0] == node[y]:
+                        x[0] = alfanode[y]
+    
         # print("nueva lista actualizada: ", self.nueva_lista)
         
         start = []
         end = []
         #obtener los nuevos iniciales y finales
         
+        # print("node: ", node)
         for ele in range(len(node)):
             if node[ele] == sNode:
                 start.extend(alfanode[ele])
@@ -468,6 +491,8 @@ class DirectAfd:
         # print(end)
         
         sfPoint=[]
+        # print("start: ",start)
+        # print("end: ", end)
         sfPoint.append(start)
         sfPoint.append(end)  
             
@@ -501,13 +526,16 @@ class DirectAfd:
                 f.node(str(name))
         f.node("", shape="plaintext")
         for l in directAFD:
+            # print(l)
             for val in inicio:
                 if val in l and l[0] == val:
                     if(inicio_listo):
                         f.edge("",str(l[0]),label = "")
                         inicio_listo = False
-            f.edge(str(l[0]),str(l[2]),label = str(l[1]))
-            
+            if len(l) > 1:
+                f.edge(str(l[0]),str(l[2]),label = str(l[1]))
+            else:
+                f.node(str(l[0]))
         f.render("afd Directo", view = True)
         
                 

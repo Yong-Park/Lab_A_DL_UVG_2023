@@ -68,6 +68,9 @@ class Subset():
         #encontrar sus nodos iniciales y finales
         start = []
         end = []
+        empty = []
+        # print("new element: ", self.newElement)
+        # print("alfabet: ", self.stackAlfabet)
         for node in self.newElement:
             if self.start in node:
                 indice = self.newElement.index(node)
@@ -75,15 +78,19 @@ class Subset():
             elif self.finish in node:
                 indice = self.newElement.index(node)
                 end.append(self.stackAlfabet[indice])
+            elif len(node) == 0:
+                indice = self.newElement.index(node)
+                empty.append(self.stackAlfabet[indice])
         #agregar los que son inicial y final
         self.sfAlfabet.append(start)
         self.sfAlfabet.append(end)
+        self.sfAlfabet.append(empty)
 
     def move(self,array):
         # print("Elementos eclosure: ", array)
         for tran in self.lenguaje:  #a,b
             temporalArray = []
-            print(tran)
+            # print(tran)
             for start in array:
                 for node in self.afn:
                     if node[0] == start and node[1] == tran:
@@ -94,7 +101,9 @@ class Subset():
             # print("los move encontrados: ", temporalArray)
             #obtener el indice para obtener su alfabeto concreto
             indice = self.newElement.index(array)
+            # if len(temporalArray) != 0:
             self.transaction.append([self.stackAlfabet[indice],tran,self.eClosure(temporalArray)])
+            # print("Transaction: ",self.transaction)
         #     print("todos los elementos que existe: ", self.newElement)
         # print("_____________________")
 
