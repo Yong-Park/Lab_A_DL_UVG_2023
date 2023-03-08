@@ -27,9 +27,14 @@ from DirectAFDv2 import *
 # r = '(ab*)(ab)+'
 # r = 'a(abb+|bb?a*)ba|bba?a*'
 # r = "a?(ab?|b**ab)++b*"
-r = '(a|b)*abb'
-# r = 'a(a?b*|c+)b|baa'
+# r = '(a|b)*abb'
+r = 'a(a?b*|c+)b|baa'
 # r = '(a|b)(a|b)*ab(c?)'
+# r = "(a|ε)b(a+)c?"
+# r = "(a*|b*)c"
+# r = "0(0|1)*0"
+# r = "(00)*(11)*"
+# r = "((1?)*)*"
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -41,7 +46,7 @@ postfix = post.transform_postfix(new_infix)
 # Construccion del arbol del postfix
 tree = Tree()
 tree.build_tree_from_postfix(postfix)
-# tree.print_tree()
+tree.print_tree()
 # obtener la lectura desde el left most utilizando el arbol construido
 result = tree.left_most()
 
@@ -56,7 +61,6 @@ afn.afnGraph(afn_construido[0],afn_construido[1])
 subset = Subset(afn_construido[0],afn_construido[1],postfix)
 #comenzar la construccion por medio de subset
 afd = subset.afnConstruction()
-print(afd[1])
 #construir el grafo del afn
 subset.afdGraph(afd[0],afd[1])
 

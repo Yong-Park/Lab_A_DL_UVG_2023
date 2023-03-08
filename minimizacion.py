@@ -68,14 +68,19 @@ class Minimizacion():
                     
                     #juntarlos por sus similitudes
                     groups = {}
-
+                    print("_________Similitudes_______")
                     # Recorremos la lista y agrupamos los elementos según la condición especificada
                     for item in tabla:
-                        key = tuple([subitem[1] for subitem in item[1:]])
+                        print("item: ", item)
+                        key = tuple(sorted([str(subitem[0])+str(subitem[1]) for subitem in item[1:]]))
+                        
+                        print("key: ", key)
                         if key in groups:
                             groups[key].append(item[0])
                         else:
                             groups[key] = [item[0]]
+                        print("groups: ", groups)
+                        print("__")
 
                     # Convertimos el diccionario en una lista de listas
                     result = [group for group in groups.values()]

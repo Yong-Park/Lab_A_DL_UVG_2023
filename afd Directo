@@ -3,15 +3,23 @@ digraph {
 	A [fillcolor="#7fff00" style=filled]
 	B
 	C
-	D [fillcolor="#ee3b3b" shape=doublecircle style=filled]
+	D
+	E [fillcolor="#ee3b3b" shape=doublecircle style=filled]
+	F
+	G
+	H [fillcolor="#ee3b3b" shape=doublecircle style=filled]
 	"" [shape=plaintext]
 	"" -> A [label=""]
 	A -> B [label=a]
-	A -> A [label=b]
-	B -> B [label=a]
-	B -> C [label=b]
-	C -> B [label=a]
-	C -> D [label=b]
-	D -> B [label=a]
-	D -> A [label=b]
+	A -> C [label=b]
+	B -> D [label=a]
+	B -> E [label=b]
+	B -> F [label=c]
+	C -> G [label=a]
+	D -> E [label=b]
+	E -> E [label=b]
+	F -> H [label=b]
+	F -> F [label=c]
+	G -> H [label=a]
+	H
 }

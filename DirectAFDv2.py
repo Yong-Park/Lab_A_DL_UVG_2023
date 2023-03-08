@@ -188,12 +188,12 @@ class DirectAfd:
 
                 elif node == 'ε':
                     self.nullable.append(True)
-                    self.firstPos.append('∅')
-                    self.lastPos.append('∅')
+                    self.firstPos.append([])
+                    self.lastPos.append([])
 
                     self.deletable_nullable.append(True)
-                    self.deletable_firstPos.append('∅')
-                    self.deletable_lastPos.append('∅')
+                    self.deletable_firstPos.append([])
+                    self.deletable_lastPos.append([])
             else:
                 self.nullable.append(False)
                 self.firstPos.append([node])
@@ -203,10 +203,10 @@ class DirectAfd:
                 self.deletable_firstPos.append([node])
                 self.deletable_lastPos.append([node])
 
-        #     print("nullable deletable: ",self.deletable_nullable)
-        #     print("fistpos deletable: ",self.deletable_firstPos)
-        #     print("lastpost deletable: ",self.deletable_lastPos)
-        #     print("_____________________")
+            # print("nullable deletable: ",self.deletable_nullable)
+            # print("fistpos deletable: ",self.deletable_firstPos)
+            # print("lastpost deletable: ",self.deletable_lastPos)
+            # print("_____________________")
 
         # print("_________________Final_________________")
         # print("node: ", self.newPostfix)
@@ -379,7 +379,9 @@ class DirectAfd:
         #nodo inicial
         # print(self.postfix)
         # print(self.followPos)
-        sNode = self.followPos[0][1]
+        # print(self.firstPos[len(self.firstPos)-1])
+        # print(self.lastPos)
+        sNode = self.firstPos[len(self.firstPos)-1]
         # print("snode: ", sNode)
         # print("followpos: ", self.followPos)
         #nodo final
