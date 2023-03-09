@@ -28,13 +28,13 @@ from DirectAFDv2 import *
 # r = 'a(abb+|bb?a*)ba|bba?a*'
 # r = "a?(ab?|b**ab)++b*"
 # r = '(a|b)*abb'
-r = 'a(a?b*|c+)b|baa'
+# r = 'a(a?b*|c+)b|baa'
 # r = '(a|b)(a|b)*ab(c?)'
 # r = "(a|ε)b(a+)c?"
 # r = "(a*|b*)c"
 # r = "0(0|1)*0"
 # r = "(00)*(11)*"
-# r = "((1?)*)*"
+r = "((1?)*)*"
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -76,22 +76,11 @@ afdDirecto.DirectGraph(direct[0],direct[1])
 
 
 #cadena de lenguaje para su aceptacion
-# w = 'ababbaabb'
+# w = 'ababbaabbc'
+w = "1"
 # #comenzar con la simulacion para afn y afd
-# print("________AFN__________")
-# print(afn_construido[0])
-# print(afn_construido[1])
-# print("_________AFD_________")
-# print(afd[0])
-# print(afd[1])
-# print("__________MINIMIZACION________")
-# print(afdMinimzado[0])
-# print(afdMinimzado[1])
-# print("__________DIRECTO________")
-# print(direct[0])
-# print(direct[1])
-# print("__________________")
-# simulation = Simulation()
-# simulation.afnSimulation(afn_construido[0],afn_construido[1])
+simulation = Simulation()
+print(simulation.afnSimulation(afn_construido[0],afn_construido[1],w))
+print(simulation.afdSimulation(afdMinimzado[0],afdMinimzado[1],w))
 
 

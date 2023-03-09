@@ -488,6 +488,9 @@ class DirectAfd:
                 start.extend(alfanode[ele])
             elif final in node[ele]:
                 end.extend(alfanode[ele])
+        #en caso que solo es un nodo
+        if len(node) == 1:
+            end.extend(alfanode[0])
         #se guardan los nuevos iniciales y finales correspondientes
         # print(start)
         # print(end)
