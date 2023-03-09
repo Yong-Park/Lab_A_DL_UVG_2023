@@ -474,7 +474,10 @@ class DirectAfd:
                     # print(node[y])
                     # print(len(node[y]))
                     if x[0] == node[y]:
-                        x[0] = alfanode[y]
+                        x[0] = "vacio"
+        
+        self.nueva_lista = [sublista for sublista in self.nueva_lista if 'vacio' not in sublista]
+        
     
         # print("nueva lista actualizada: ", self.nueva_lista)
         
@@ -489,8 +492,8 @@ class DirectAfd:
             elif final in node[ele]:
                 end.extend(alfanode[ele])
         #en caso que solo es un nodo
-        if len(node) == 1:
-            end.extend(alfanode[0])
+        # if len(node) == 1:
+        #     end.extend(alfanode[0])
         #se guardan los nuevos iniciales y finales correspondientes
         # print(start)
         # print(end)

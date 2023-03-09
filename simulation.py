@@ -82,6 +82,7 @@ class Simulation:
         # print("caminos: ",caminos)
         #obtener el alfabeto
         for x in afd:
+            # print(x)
             if x[1] not in alfabeto and x[1] != "ε":
                 alfabeto.append(x[1])
         alfabeto.sort()
