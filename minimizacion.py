@@ -42,7 +42,7 @@ class Minimizacion():
         # print("P0: ", self.P0)
         
     def startFunction(self):
-        print(self.afd)
+        # print(self.afd)
         largo = 0
         while(largo != len(self.P0)):
             largo = len(self.P0)

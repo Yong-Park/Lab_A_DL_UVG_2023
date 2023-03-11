@@ -499,8 +499,8 @@ class DirectAfd:
         # print(end)
         
         sfPoint=[]
-        print("start: ",start)
-        print("end: ", end)
+        # print("start: ",start)
+        # print("end: ", end)
         sfPoint.append(start)
         sfPoint.append(end)  
             

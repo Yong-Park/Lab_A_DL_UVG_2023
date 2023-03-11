@@ -31,10 +31,10 @@ from DirectAFDv2 import *
 # r = 'a(a?b*|c+)b|baa'
 # r = '(a|b)(a|b)*ab(c?)'
 # r = "(a|ε)b(a+)c?"
-# r = "(a*|b*)c"
+r = "(a*|b*)c"
 # r = "0(0|1)*0"
 # r = "(00)*(11)*"
-r = "((1?)*)*"
+# r = "((1?)*)*"
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -77,8 +77,9 @@ afdDirecto.DirectGraph(direct[0],direct[1])
 
 #cadena de lenguaje para su aceptacion
 # w = 'ababbaabbc'
-w = "ε1ε11"
+# w = "ε1ε11"
 # w ="abbba"
+w = "bbbc"
 # #comenzar con la simulacion para afn y afd
 simulation = Simulation()
 print(simulation.afnSimulation(afn_construido[0],afn_construido[1],w))

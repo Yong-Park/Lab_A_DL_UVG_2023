@@ -1,9 +1,25 @@
 // afd
 digraph {
-	A [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	B [fillcolor="#ee3b3b" shape=doublecircle style=filled]
+	A [fillcolor="#7fff00" style=filled]
+	B
+	C
+	D [fillcolor="#ee3b3b" shape=doublecircle style=filled]
+	E
 	"" [shape=plaintext]
 	"" -> A [label=""]
-	A -> B [label=1]
-	B -> B [label=1]
+	A -> B [label=a]
+	A -> C [label=b]
+	A -> D [label=c]
+	B -> B [label=a]
+	B -> E [label=b]
+	B -> D [label=c]
+	C -> E [label=a]
+	C -> C [label=b]
+	C -> D [label=c]
+	D -> E [label=a]
+	D -> E [label=b]
+	D -> E [label=c]
+	E -> E [label=a]
+	E -> E [label=b]
+	E -> E [label=c]
 }
