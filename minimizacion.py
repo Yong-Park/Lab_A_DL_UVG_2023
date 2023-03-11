@@ -26,8 +26,8 @@ class Minimizacion():
                 if element[0] not in self.noAceptacion and element[0] not in self.empty:
                     self.noAceptacion.append(element[0])
                     
-        # print(self.noAceptacion)
-        # print(self.aceptacion)
+        # print("no aceptacion: ", self.noAceptacion)
+        # print("aceptacion: ", self.aceptacion)
         
         #estos son los 0-equivalentes
         self.P0.append(self.noAceptacion)
@@ -39,10 +39,10 @@ class Minimizacion():
                 if element[1] not in self.alfabeto:
                     self.alfabeto.append(element[1])
                     
-        # print(self.P0)
+        # print("P0: ", self.P0)
         
     def startFunction(self):
-        # print(self.afd)
+        print(self.afd)
         largo = 0
         while(largo != len(self.P0)):
             largo = len(self.P0)
@@ -96,29 +96,36 @@ class Minimizacion():
         #             print("=====================")
         # print("final: ", self.final)
         # print("inicio: ", self.inicio)
+        # print("====")
         start = []
         end = []
         #obtener los nuevos iniciales y finales
         for item in self.P0:
             if any(x in self.final for x in item):
                 end.append(item[0])
-            elif any(x in self.inicio for x in item):
+            if any(x in self.inicio for x in item):
                 start.append(item[0])
         #se guardan los nuevos iniciales y finales correspondientes
         self.inicio = start
         self.final = end
 
-        # print(self.inicio)
-        # print(self.final)
-                    
+        # print("inicio: ", self.inicio)
+        # print("final: ", self.final)
+        # print("P0:", self.P0)
+        # print("")
         #obtener sus transaciones de cada uno
         for value in self.P0:
-            for alfa in self.alfabeto:
-                for transaction in self.afd:
-                    if transaction[0] == value[0] and transaction[1] == alfa:
-                        for inside in self.P0:
-                            if transaction[2] in inside:
-                                self.finalTransaction.append([transaction[0],transaction[1],inside[0]])
+            # print("value: ",value)
+            if len(value) > 0:
+                for alfa in self.alfabeto:
+                    # print("alfa: ",alfa)
+                    for transaction in self.afd:
+                        # print("transaction: ", transaction)
+                        # print("=====")
+                        if transaction[0] == value[0] and transaction[1] == alfa:
+                            for inside in self.P0:
+                                if transaction[2] in inside:
+                                    self.finalTransaction.append([transaction[0],transaction[1],inside[0]])
         
         # print(self.inicio)
         # print(self.final)

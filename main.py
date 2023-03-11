@@ -28,13 +28,13 @@ from DirectAFDv2 import *
 # r = 'a(abb+|bb?a*)ba|bba?a*'
 # r = "a?(ab?|b**ab)++b*"
 # r = '(a|b)*abb'
-r = 'a(a?b*|c+)b|baa'
+# r = 'a(a?b*|c+)b|baa'
 # r = '(a|b)(a|b)*ab(c?)'
 # r = "(a|ε)b(a+)c?"
 # r = "(a*|b*)c"
 # r = "0(0|1)*0"
 # r = "(00)*(11)*"
-# r = "((1?)*)*"
+r = "((1?)*)*"
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -46,7 +46,7 @@ postfix = post.transform_postfix(new_infix)
 # Construccion del arbol del postfix
 tree = Tree()
 tree.build_tree_from_postfix(postfix)
-tree.print_tree()
+# tree.print_tree()
 # obtener la lectura desde el left most utilizando el arbol construido
 result = tree.left_most()
 
@@ -77,8 +77,8 @@ afdDirecto.DirectGraph(direct[0],direct[1])
 
 #cadena de lenguaje para su aceptacion
 # w = 'ababbaabbc'
-# w = "1"
-w ="abbba"
+w = "ε1ε11"
+# w ="abbba"
 # #comenzar con la simulacion para afn y afd
 simulation = Simulation()
 print(simulation.afnSimulation(afn_construido[0],afn_construido[1],w))

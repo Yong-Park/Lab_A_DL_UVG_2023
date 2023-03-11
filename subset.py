@@ -27,10 +27,12 @@ class Subset():
         self.sfAlfabet = []
     
     def obtainElement(self):
+        # print("elements: ", self.elements)
         for l in self.elements:
-            if l not in ".*|ε+?": 
+            if l not in ".*|+?ε": 
                 if l not in self.lenguaje:
                     self.lenguaje.append(l)
+        # print("lenguaje: ", self.lenguaje)
         
     def afnConstruction(self):
         #este es la primera construccion que se realiza
@@ -54,6 +56,9 @@ class Subset():
             self.stackElement.append(newArray)
             self.stackAlfabet.append(self.alfabeto.pop(0))
         #se realizara el movieminto y eclousure siempre y cuando el elemento no este vacio
+        # print("newElement: ",self.newElement )
+        # print("stackElement: ", self.stackElement)
+        # print("stackAlfabet: ", self.stackAlfabet)
         self.cicle()
         
         #regresar la transaccion y sus iniciales y finales
@@ -75,12 +80,15 @@ class Subset():
             if self.start in node:
                 indice = self.newElement.index(node)
                 start.append(self.stackAlfabet[indice])
-            elif self.finish in node:
+            if self.finish in node:
                 indice = self.newElement.index(node)
                 end.append(self.stackAlfabet[indice])
-            elif len(node) == 0:
+            if len(node) == 0:
                 indice = self.newElement.index(node)
                 empty.append(self.stackAlfabet[indice])
+        # print("start: ", start)
+        # print("end: ", end)
+        # print("empy: ",empty)
         #agregar los que son inicial y final
         self.sfAlfabet.append(start)
         self.sfAlfabet.append(end)
