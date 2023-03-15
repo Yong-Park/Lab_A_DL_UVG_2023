@@ -95,7 +95,7 @@ afdDirecto.DirectGraph(direct[0],direct[1])
 # w = "bb"
 # w = 'aaaaa'
 # w = ""
-w = 'abac'
+w = 'baaaac'
 # #comenzar con la simulacion para afn y afd
 simulation = Simulation()
 print(simulation.afnSimulation(afn_construido[0],afn_construido[1],w))
