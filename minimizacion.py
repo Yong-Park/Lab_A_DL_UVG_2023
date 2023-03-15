@@ -29,6 +29,9 @@ class Minimizacion():
             if element[2] in self.final:
                 if element[2] not in self.aceptacion:
                     self.aceptacion.append(element[2])
+            else:
+                if element[2] not in self.noAceptacion and element[2] not in self.empty:
+                    self.noAceptacion.append(element[2])
                     
         # print("no aceptacion: ", self.noAceptacion)
         # print("aceptacion: ", self.aceptacion)
