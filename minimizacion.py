@@ -19,12 +19,16 @@ class Minimizacion():
     def obtainValues(self):
         #guardar las cadenas segun son terminales o no
         for element in self.afd:
+            # print("elemet: ", element)
             if element[0] in self.final:
                 if element[0] not in self.aceptacion:
                     self.aceptacion.append(element[0])
             else:
                 if element[0] not in self.noAceptacion and element[0] not in self.empty:
                     self.noAceptacion.append(element[0])
+            if element[2] in self.final:
+                if element[2] not in self.aceptacion:
+                    self.aceptacion.append(element[2])
                     
         # print("no aceptacion: ", self.noAceptacion)
         # print("aceptacion: ", self.aceptacion)

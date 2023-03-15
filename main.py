@@ -34,8 +34,8 @@ from DirectAFDv2 import *
 # A probar
 # r = "(a*|b*)c"
 # r ="(b|b)*abb(a|b)*"
-# r = "(a|ε)b(a+)c?"
-r = "(a|b)*a(a|b)(a|b)"
+r = "(a|ε)b(a+)c?"
+# r = "(a|b)*a(a|b)(a|b)"
 # r = "b*ab?"
 # r = "b+abc+"
 # r = "ab*ab*"
@@ -93,7 +93,9 @@ afdDirecto.DirectGraph(direct[0],direct[1])
 # w ="abbba"
 # w = "bbbc"
 # w = "bb"
-w = 'aaaaaaaaaaaaabaaa'
+# w = 'aaaaa'
+# w = ""
+w = 'abac'
 # #comenzar con la simulacion para afn y afd
 simulation = Simulation()
 print(simulation.afnSimulation(afn_construido[0],afn_construido[1],w))
