@@ -15,7 +15,6 @@ from DirectAFDv2 import *
 # r = "(ab)*"
 # r = "(a|b)a*"
 # r = "(a|b)*(a|b)"
-# r ="(b|b)*abb(a|b)*"
 # r = "(ab)?"
 # r = "0?(1?)?0*"
 # r = "(ab+)?"
@@ -30,12 +29,24 @@ from DirectAFDv2 import *
 # r = '(a|b)*abb'
 # r = 'a(a?b*|c+)b|baa'
 # r = '(a|b)(a|b)*ab(c?)'
-# r = "(a|ε)b(a+)c?"
+
+
+# A probar
 # r = "(a*|b*)c"
+# r ="(b|b)*abb(a|b)*"
+# r = "(a|ε)b(a+)c?"
+r = "(a|b)*a(a|b)(a|b)"
+# r = "b*ab?"
+# r = "b+abc+"
+# r = "ab*ab*"
 # r = "0(0|1)*0"
+# r = "((ε|0)1*)*"
+# r = "(0|1)*0(0|1)(0|1)"
 # r = "(00)*(11)*"
+# r = "(0|1)1*(0|1)"
+# r = "0?(1|ε)?0*"
 # r = "((1?)*)*"
-r = "(a|b)"
+# r = "(01)*(10)*"
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -47,7 +58,7 @@ postfix = post.transform_postfix(new_infix)
 # Construccion del arbol del postfix
 tree = Tree()
 tree.build_tree_from_postfix(postfix)
-# tree.print_tree()
+tree.print_tree()
 # obtener la lectura desde el left most utilizando el arbol construido
 result = tree.left_most()
 
@@ -78,10 +89,11 @@ afdDirecto.DirectGraph(direct[0],direct[1])
 
 #cadena de lenguaje para su aceptacion
 # w = 'ababbaabbc'
-# w = "ε1ε11"
+# w = "01010101010101101010101010101010"
 # w ="abbba"
 # w = "bbbc"
-w = "bb"
+# w = "bb"
+w = 'aaaaaaaaaaaaabaaa'
 # #comenzar con la simulacion para afn y afd
 simulation = Simulation()
 print(simulation.afnSimulation(afn_construido[0],afn_construido[1],w))

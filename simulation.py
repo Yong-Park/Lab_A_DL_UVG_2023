@@ -21,12 +21,18 @@ class Simulation:
         # print("caminos: ", caminos)
         # print(afn)
         # print("===================")
-        i = 0
+        
         for c in cadena:
-            # print(c)
-            while i  < len(caminos):
+            i = 0
+            print(c)
+            # print("len caminos :",len(caminos))
+            # print("i: ", i)
+            while i  != len(caminos):
+                
+                
                 #obtener todos los nodos que llega con epsilon
                 i = len(caminos)
+                # print("new i: ", i)
                 for camino in caminos:
                     for p in camino:
                         for x in afn:
@@ -34,7 +40,7 @@ class Simulation:
                                 if x[2] not in camino:
                                     camino.append(x[2])
                            
-            # print("caminos epsilon: ", caminos)
+            print("caminos epsilon: ", caminos)
             #buscar los que llegan a un lado y agregarlos como uno nuevo
             largo = len(caminos)
             camino_borrable = []
@@ -48,8 +54,8 @@ class Simulation:
             for i in range(largo):
                 caminos.pop(0)
                         
-            # print("caminos valor: ", caminos)
-            # print("==================")
+            print("caminos valor: ", caminos)
+            print("==================")
         
         
         #realizar un ultimo movimiento del epsilon si en dado caso tiene 
@@ -63,7 +69,7 @@ class Simulation:
                         if p == x[0] and x[1] == eps:
                             if x[2] not in camino:
                                 camino.append(x[2])
-        # print("camino final: ", caminos)
+        print("camino final: ", caminos)
         #revisar si llego
         for x in caminos:
             if end in x:

@@ -109,9 +109,9 @@ class Subset():
             # print("los move encontrados: ", temporalArray)
             #obtener el indice para obtener su alfabeto concreto
             indice = self.newElement.index(array)
-            # if len(temporalArray) != 0:
-            self.transaction.append([self.stackAlfabet[indice],tran,self.eClosure(temporalArray)])
-            # print("Transaction: ",self.transaction)
+            if len(temporalArray) != 0:
+                self.transaction.append([self.stackAlfabet[indice],tran,self.eClosure(temporalArray)])
+        #     print("Transaction: ",self.transaction)
         #     print("todos los elementos que existe: ", self.newElement)
         # print("_____________________")
 
