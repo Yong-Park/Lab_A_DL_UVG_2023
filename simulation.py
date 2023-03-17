@@ -96,20 +96,25 @@ class Simulation:
         # print("afd: ", afd)
         # print("start: ",point)
         # print("end: ",end)
+
         for c in cadena:
             camino_borrable = []
             for p in caminos:
+                # print("p: ",p)
                 for x in afd:
+                    # print("afd: ",x)
                     if p == x[0] and x[1] == c:
-                        # print("p: ",p)
-                        # print("afd: ",x)
-                        camino_borrable.append(x[2])
-                    if c == "ε":
-                        camino_borrable.append(x[0])
+                        if x[2] not in camino_borrable: 
+                            camino_borrable.append(x[2])
+                    if c == "ε" and p == x[0]:
+                        if x[0] not in camino_borrable:
+                            camino_borrable.append(x[0])
+                    # print("Camino borrable: ", camino_borrable)
 
 
             caminos = camino_borrable
             # print("caminos: ",caminos)
+            # print("===============")
 
         #revisar si llego
         for i in end:

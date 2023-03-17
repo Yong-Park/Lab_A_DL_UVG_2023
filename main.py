@@ -47,6 +47,7 @@ r = "(a|ε)b(a+)c?"
 # r = "0?(1|ε)?0*"
 # r = "((1?)*)*"
 # r = "(01)*(10)*"
+# r = "aa|bb"
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -95,7 +96,7 @@ afdDirecto.DirectGraph(direct[0],direct[1])
 # w = "bb"
 # w = 'aaaaa'
 # w = ""
-w = 'baaaac'
+w = 'εbaaaac'
 # #comenzar con la simulacion para afn y afd
 simulation = Simulation()
 print(simulation.afnSimulation(afn_construido[0],afn_construido[1],w))
