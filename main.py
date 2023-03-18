@@ -32,22 +32,54 @@ from DirectAFDv2 import *
 
 
 # A probar
-# r = "(a*|b*)c"
+r = "(a*|b*)c"
+w = 'aaaaaaaaaaaaaaac'
+w = "aaaaaaaa"
+
 # r ="(b|b)*abb(a|b)*"
-r = "(a|ε)b(a+)c?"
+# w = "abbaaaaaaaaa"
+
+# r = "(a|ε)b(a+)c?"
+# w = "εbaaaaaaac"
+# w =  "abc"
+
 # r = "(a|b)*a(a|b)(a|b)"
-# r = "b*ab?"
+# w = "bbbaaaabbbbabb"
+
+# r = "b*ab?"   
+# w = "a"
+
 # r = "b+abc+"
+# w = "babc"
+
 # r = "ab*ab*"
+# w = "aa"
+
 # r = "0(0|1)*0"
+# w = "0001110"
+
 # r = "((ε|0)1*)*"
+# w = ""
+
 # r = "(0|1)*0(0|1)(0|1)"
+# w = "111111111011"
+# w = "0110"
+
 # r = "(00)*(11)*"
+# w = "00000000001111111111"
+# w = "0101010101010101"
+
 # r = "(0|1)1*(0|1)"
+# w = "11111110"
+
 # r = "0?(1|ε)?0*"
+# w = "010000000"
+
 # r = "((1?)*)*"
+# w = "εεεε"
+
 # r = "(01)*(10)*"
-# r = "aa|bb"
+# w = "0101010110101010"
 
 #comenzar para convertirlo 
 post = Postfix(r)
@@ -88,20 +120,11 @@ direct = afdDirecto.Dstate()
 afdDirecto.DirectGraph(direct[0],direct[1])
 
 
-#cadena de lenguaje para su aceptacion
-# w = 'ababbaabbc'
-# w = "01010101010101101010101010101010"
-# w ="abbba"
-# w = "bbbc"
-# w = "bb"
-# w = 'aaaaa'
-# w = ""
-w = 'εbaaaac'
 # #comenzar con la simulacion para afn y afd
 simulation = Simulation()
-print(simulation.afnSimulation(afn_construido[0],afn_construido[1],w))
-print(simulation.afdSimulation(afd[0],afd[1],w))
-print(simulation.afdSimulation(afdMinimzado[0],afdMinimzado[1],w))
-print(simulation.afdSimulation(direct[0],direct[1],w))
+print("afn: ", simulation.afnSimulation(afn_construido[0],afn_construido[1],w))
+print("afd: ", simulation.afdSimulation(afd[0],afd[1],w))
+print("afd minimizado: ", simulation.afdSimulation(afdMinimzado[0],afdMinimzado[1],w))
+print("afd directo: ", simulation.afdSimulation(direct[0],direct[1],w))
 
 

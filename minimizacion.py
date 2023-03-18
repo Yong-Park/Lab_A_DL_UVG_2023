@@ -42,9 +42,9 @@ class Minimizacion():
         
         #obtener los alfabetos
         for element in self.afd:
-            if element[1] != "ε":
-                if element[1] not in self.alfabeto:
-                    self.alfabeto.append(element[1])
+            # if element[1] != "ε":
+            if element[1] not in self.alfabeto:
+                self.alfabeto.append(element[1])
                     
         # print("P0: ", self.P0)
         
@@ -54,11 +54,11 @@ class Minimizacion():
         while(largo != len(self.P0)):
             largo = len(self.P0)
             #comenzar con la rotacion de equivalentes
-            for x in self.P0:
+            for x in range(len(self.P0)):
                 tabla = []
-                # print("x: ", x)
-                if len(x) > 1:
-                    for y in x:
+                # print("x: ", self.P0[x])
+                if len(self.P0[x]) > 1:
+                    for y in self.P0[x]:
                         conjuntos = []
                         conjuntos.append(y)
                         for alfa in self.alfabeto:
@@ -93,14 +93,17 @@ class Minimizacion():
                     # Convertimos el diccionario en una lista de listas
                     result = [group for group in groups.values()]
                     
-                    self.P0.remove(x)
+                    self.P0[x] = []
                     self.P0.extend(result)
 
-        #             print("Resultados: ", result)
+                    # print("Resultados: ", result)
 
                                                 
-        #             print("P0: ", self.P0)
-        #             print("=====================")
+                    # print("P0: ", self.P0)
+                    # print("=====================")
+            
+            self.P0 = [sub for sub in self.P0 if sub !=[]]
+            
         # print("final: ", self.final)
         # print("inicio: ", self.inicio)
         # print("====")
