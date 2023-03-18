@@ -31,16 +31,16 @@ from DirectAFDv2 import *
 # r = '(a|b)(a|b)*ab(c?)'
 
 
-# A probar
+# # A probar
 r = "(a*|b*)c"
 w = 'aaaaaaaaaaaaaaac'
-w = "aaaaaaaa"
+# w = "aaaaaaaa"
 
 # r ="(b|b)*abb(a|b)*"
 # w = "abbaaaaaaaaa"
 
 # r = "(a|ε)b(a+)c?"
-# w = "εbaaaaaaac"
+# # w = "εbaaaaaaa"
 # w =  "abc"
 
 # r = "(a|b)*a(a|b)(a|b)"
@@ -66,7 +66,7 @@ w = "aaaaaaaa"
 # w = "0110"
 
 # r = "(00)*(11)*"
-# w = "00000000001111111111"
+# w = ""
 # w = "0101010101010101"
 
 # r = "(0|1)1*(0|1)"
