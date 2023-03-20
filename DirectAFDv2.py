@@ -203,10 +203,10 @@ class DirectAfd:
                 self.deletable_firstPos.append([node])
                 self.deletable_lastPos.append([node])
 
-            # print("nullable deletable: ",self.deletable_nullable)
-            # print("fistpos deletable: ",self.deletable_firstPos)
-            # print("lastpost deletable: ",self.deletable_lastPos)
-            # print("_____________________")
+        #     print("nullable deletable: ",self.deletable_nullable)
+        #     print("fistpos deletable: ",self.deletable_firstPos)
+        #     print("lastpost deletable: ",self.deletable_lastPos)
+        #     print("_____________________")
 
         # print("_________________Final_________________")
         # print("node: ", self.newPostfix)
@@ -376,6 +376,7 @@ class DirectAfd:
         # print("followpos: ",self.followPos)
         
     def Dstate(self):
+        # print("==========Dstates===============")
         #nodo inicial
         # print(self.postfix)
         # print(self.followPos)
@@ -418,7 +419,7 @@ class DirectAfd:
                                     for z in w[1]:
                                         if z not in con:
                                             con.append(z)
-                con.sort
+                con.sort()
                 # print("con: ",con)
                 if con not in P0 and len(con) != 0:
                     P0.append(con)

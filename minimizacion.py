@@ -8,7 +8,6 @@ class Minimizacion():
         self.afd = afd
         self.inicio = sfpoint[0]
         self.final = sfpoint[1]
-        self.empty = sfpoint[2]
         self.P0 = []
         self.aceptacion = []
         self.noAceptacion = []
@@ -24,13 +23,13 @@ class Minimizacion():
                 if element[0] not in self.aceptacion:
                     self.aceptacion.append(element[0])
             else:
-                if element[0] not in self.noAceptacion and element[0] not in self.empty:
+                if element[0] not in self.noAceptacion:
                     self.noAceptacion.append(element[0])
             if element[2] in self.final:
                 if element[2] not in self.aceptacion:
                     self.aceptacion.append(element[2])
             else:
-                if element[2] not in self.noAceptacion and element[2] not in self.empty:
+                if element[2] not in self.noAceptacion:
                     self.noAceptacion.append(element[2])
                     
         # print("no aceptacion: ", self.noAceptacion)

@@ -30,10 +30,15 @@ from DirectAFDv2 import *
 # r = 'a(a?b*|c+)b|baa'
 # r = '(a|b)(a|b)*ab(c?)'
 
+# r = "a*|b*|c"
+# w = "c"
+# r = "ba|b(a*)"
+# w = "b"
+
 
 # # A probar
-r = "(a*|b*)c"
-w = 'aaaaaaaaaaaaaaac'
+# r = "(a*|b*)c"
+# w = 'aaaaaaaaaaaaaaac'
 # w = "aaaaaaaa"
 
 # r ="(b|b)*abb(a|b)*"
@@ -75,8 +80,8 @@ w = 'aaaaaaaaaaaaaaac'
 # r = "0?(1|ε)?0*"
 # w = "010000000"
 
-# r = "((1?)*)*"
-# w = "εεεε"
+r = "((1?)*)*"
+w = "εεεε"
 
 # r = "(01)*(10)*"
 # w = "0101010110101010"
@@ -117,6 +122,8 @@ minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
 #realizar el afd directo desde la expresion regular
 afdDirecto = DirectAfd(result)
 direct = afdDirecto.Dstate()
+directminimizado = Minimizacion(direct[0],direct[1])
+direct = directminimizado.startFunction()
 afdDirecto.DirectGraph(direct[0],direct[1])
 
 

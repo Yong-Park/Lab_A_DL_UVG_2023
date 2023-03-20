@@ -1,14 +1,7 @@
 // afd Directo
 digraph {
 	A [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	B
-	C
-	D [fillcolor="#ee3b3b" shape=doublecircle style=filled]
 	"" [shape=plaintext]
 	"" -> A [label=""]
-	A -> B [label=0]
-	A -> C [label=1]
-	B -> A [label=0]
-	C -> D [label=1]
-	D -> C [label=1]
+	A -> A [label=1]
 }
