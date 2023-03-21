@@ -14,25 +14,25 @@ class Postfix:
         self.infix_array = []
         for value in range(len(self.infix)):
             self.infix_array.append(self.infix[value])
-            self.infix_array.append('.')
+            self.infix_array.append('•')
                 
         for value in range(len(self.infix_array)):
             if self.infix_array[value] in '|':
-                if self.infix_array[value-1] in ".":
+                if self.infix_array[value-1] in "•":
                     self.infix_array[value-1] = " "
-                if self.infix_array[value+1] in ".":
+                if self.infix_array[value+1] in "•":
                     self.infix_array[value+1] =" "
                     
             elif self.infix_array[value] in '(':
-                if self.infix_array[value+1] in ".":
+                if self.infix_array[value+1] in "•":
                     self.infix_array[value+1] =" "
                     
             elif self.infix_array[value] in ')':
-                if self.infix_array[value-1] in ".":
+                if self.infix_array[value-1] in "•":
                     self.infix_array[value-1] =" "
                     
             elif self.infix_array[value] in '*+?':
-                if self.infix_array[value-1] in ".":
+                if self.infix_array[value-1] in "•":
                     self.infix_array[value-1] =" "
                     
             
@@ -47,7 +47,7 @@ class Postfix:
             if l-1 >= 0 :
                 if l+1 < len(self.data):
                     if self.data[l] in '+*?':
-                        if self.data[l-1] not in '.|(' and self.data[l+1] not in '(':
+                        if self.data[l-1] not in '•|(' and self.data[l+1] not in '(':
                             pass
                             # print(self.data[l] in '+*')
                             # print(self.data[l-1] not in '+*.|(')
@@ -57,8 +57,8 @@ class Postfix:
                             # print("seguido ",self.data[l+1])
                             print("system error")
                             sys.exit()
-                    elif self.data[l] in '.|':
-                        if self.data[l-1] not in '.|(' and self.data[l+1] not in '.*+)|':
+                    elif self.data[l] in '•|':
+                        if self.data[l-1] not in '•|(' and self.data[l+1] not in '•*+)|':
                             pass
                             # print(self.data[l] in '.|')
                             # print(self.data[l-1] not in '+*.|(')
@@ -69,11 +69,11 @@ class Postfix:
                             print("system error")
                             sys.exit()
                 else:
-                    if self.data[l] in '.|':
+                    if self.data[l] in '•|':
                         print("system error")
                         sys.exit()
             else:
-                if self.data[l] in '+*.|':
+                if self.data[l] in '+*•|':
                     print("system error")
                     sys.exit()
         #     print("_____________")
@@ -88,7 +88,7 @@ class Postfix:
             # print(l)
             # print("s: " + str(stack))
             # print("o: " + str(output))
-            if l in "|()*.+?":
+            if l in "|()*•+?":
                 self.stack.append(l)
                 # print("before stack: ", self.stack)
                 proceso = True
@@ -154,7 +154,7 @@ class Postfix:
                         else:
                             proceso = False
                                 
-                    elif element == ".":
+                    elif element == "•":
                         if len(self.stack) > 1:
                             if self.stack[len(self.stack)-2] == "*":
                                 self.output.append(self.stack[len(self.stack)-2])
@@ -165,7 +165,7 @@ class Postfix:
                             elif self.stack[len(self.stack)-2] == "?":
                                 self.output.append(self.stack[len(self.stack)-2])
                                 self.stack.pop(len(self.stack)-2)
-                            elif self.stack[len(self.stack)-2] == ".":
+                            elif self.stack[len(self.stack)-2] == "•":
                                 self.output.append(self.stack[len(self.stack)-1])
                                 self.stack.pop(len(self.stack)-1)
                             else:
@@ -184,7 +184,7 @@ class Postfix:
                             elif self.stack[len(self.stack)-2] == "?":
                                 self.output.append(self.stack[len(self.stack)-2])
                                 self.stack.pop(len(self.stack)-2)
-                            elif self.stack[len(self.stack)-2] == ".":
+                            elif self.stack[len(self.stack)-2] == "•":
                                 self.output.append(self.stack[len(self.stack)-2])
                                 self.stack.pop(len(self.stack)-2)
                             elif self.stack[len(self.stack)-2] == "|":

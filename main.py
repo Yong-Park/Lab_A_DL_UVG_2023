@@ -77,11 +77,11 @@ from DirectAFDv2 import *
 # r = "(0|1)1*(0|1)"
 # w = "11111110"
 
-# r = "0?(1|ε)?0*"
-# w = "010000000"
+r = "0?(1|ε)?0*"
+w = "010000000"
 
-r = "((1?)*)*"
-w = "εεεε"
+# r = "((1?)*)*"
+# w = "εεεε"
 
 # r = "(01)*(10)*"
 # w = "0101010110101010"
@@ -122,9 +122,11 @@ minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
 #realizar el afd directo desde la expresion regular
 afdDirecto = DirectAfd(result)
 direct = afdDirecto.Dstate()
-directminimizado = Minimizacion(direct[0],direct[1])
-direct = directminimizado.startFunction()
 afdDirecto.DirectGraph(direct[0],direct[1])
+
+directminimizado = Minimizacion(direct[0],direct[1])
+directo = directminimizado.startFunction()
+afdDirecto.DirectGraph(directo[0],directo[1])
 
 
 # #comenzar con la simulacion para afn y afd
@@ -133,5 +135,5 @@ print("afn: ", simulation.afnSimulation(afn_construido[0],afn_construido[1],w))
 print("afd: ", simulation.afdSimulation(afd[0],afd[1],w))
 print("afd minimizado: ", simulation.afdSimulation(afdMinimzado[0],afdMinimzado[1],w))
 print("afd directo: ", simulation.afdSimulation(direct[0],direct[1],w))
-
+print("afd directo Minimizado: ", simulation.afdSimulation(directo[0],directo[1],w))
 

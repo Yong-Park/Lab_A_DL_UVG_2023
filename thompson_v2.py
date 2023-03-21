@@ -39,7 +39,7 @@ class Thompson:
                 self.orFunction()
             elif self.list[len(self.list)-1] == "*":
                 self.kleenFunction()
-            elif self.list[len(self.list)-1] == ".":
+            elif self.list[len(self.list)-1] == "•":
                 self.andFunction()
             elif self.list[len(self.list)-1] == "+":
                 self.kleenPositiveFunction()

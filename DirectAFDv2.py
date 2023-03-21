@@ -8,7 +8,7 @@ class DirectAfd:
         self.postfix = postfix
         #agregar el # de ultimo para la cadena
         self.postfix.append('#')
-        self.postfix.append('.')
+        self.postfix.append('•')
         # Nueva lista vacía que se utiliza para ordenar correspondientemente cuando se obtienen los valores
         self.nueva_lista = []
 
@@ -35,7 +35,7 @@ class DirectAfd:
         
         #si los valores son distintos a *|.?+ darles un valor numerico
         for x in self.postfix:
-            if x not in '*|.?+ε':
+            if x not in '*|•?+ε':
                 self.newPostfix.append(self.q.pop(0))
             else:
                 self.newPostfix.append(x)
@@ -47,7 +47,7 @@ class DirectAfd:
         # print(self.postfix)
         for node in self.newPostfix:
             # print("node: ", node)
-            if str(node) in '*|.?+ε':
+            if str(node) in '*|•?+ε':
                 if node == '*':
                     self.nullable.append(True)
                     self.firstPos.append(self.deletable_firstPos[len(self.deletable_firstPos)-1])
@@ -97,7 +97,7 @@ class DirectAfd:
                     #eliminar las primeras dos lastpos
                     self.deletable_lastPos.pop(len(self.deletable_lastPos)-2)
                     self.deletable_lastPos.pop(len(self.deletable_lastPos)-2)
-                elif node == '.':
+                elif node == '•':
                     #revisar si es nullable
                     c1 = self.deletable_nullable[len(self.deletable_nullable)-2]
                     c2 = self.deletable_nullable[len(self.deletable_nullable)-1]
@@ -223,7 +223,7 @@ class DirectAfd:
 
         #guardar todos los valores para el followpost
         for val in range(len(self.newPostfix)):
-            if str(self.newPostfix[val]) not in "*?.+|":
+            if str(self.newPostfix[val]) not in "*?•+|":
                 self.followPos.append([self.newPostfix[val]])
         
         for val in range(len(self.newPostfix)):
@@ -275,7 +275,7 @@ class DirectAfd:
                 self.deletable_lastPos.pop(len(self.deletable_lastPos)-2)
                 self.deletable_firstPos.pop(len(self.deletable_firstPos)-2)
             
-            elif self.newPostfix[val] == ".":
+            elif self.newPostfix[val] == "•":
                 c1 = self.deletable_lastPos[len(self.deletable_lastPos)-2]
                 c2 = self.deletable_firstPos[len(self.deletable_firstPos)-1]
                 isnodes.extend(c1)
@@ -394,7 +394,7 @@ class DirectAfd:
         #obtener las variables que utiliza
         self.variables = []
         for x in self.postfix:
-            if x not in "|.*+?#":
+            if x not in "|•*+?#":
                 if x not in self.variables:
                     self.variables.append(x)
         # print("variables: ", self.variables)

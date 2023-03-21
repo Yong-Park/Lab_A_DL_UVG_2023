@@ -13,7 +13,7 @@ class Tree:
     def build_tree_from_postfix(self, postfix):
         stack = []
         for symbol in postfix:
-            if symbol not in "|*.+?":
+            if symbol not in "|*•+?":
                 node = Node(symbol)
                 stack.append(node)
             elif symbol == '|':
@@ -33,7 +33,7 @@ class Tree:
                 node = Node(symbol)
                 node.left = stack.pop()
                 stack.append(node)
-            elif symbol == '.':
+            elif symbol == '•':
                 node = Node(symbol)
                 node.right = stack.pop()
                 node.left = stack.pop()
