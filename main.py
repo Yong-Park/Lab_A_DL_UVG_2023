@@ -121,6 +121,8 @@ minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
 
 #realizar el afd directo desde la expresion regular
 afdDirecto = DirectAfd(result)
+tree.build_tree_from_postfix(afdDirecto.postfix)
+tree.print_tree()
 direct = afdDirecto.Dstate()
 afdDirecto.DirectGraph(direct[0],direct[1])
 
