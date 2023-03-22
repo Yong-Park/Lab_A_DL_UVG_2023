@@ -37,9 +37,10 @@ class Postfix:
                     
             
         self.infix_array.pop(len(self.infix_array)-1)
+        # print("infix: ", self.infix_array)
         
         self.data = ''.join([c for c in self.infix_array if c != ' '])
-        # print(self.data)
+        # print("data: ", self.data)
         #revisar si esta correctamente el regex
         # print("_____________")
         for l in range(len(self.data)):
