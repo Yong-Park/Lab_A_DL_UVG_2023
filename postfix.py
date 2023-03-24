@@ -1,4 +1,3 @@
-import re
 import sys
 class Postfix:
     def __init__(self,infix):
@@ -9,7 +8,6 @@ class Postfix:
 
     def infix_Transformation(self):
         #conversion de simbolos especiales antes
-        # self.infix = re.sub("\.*?\?", lambda m: m.group().replace("?", "|ε"), self.infix)
 
         self.infix_array = []
         for value in range(len(self.infix)):
