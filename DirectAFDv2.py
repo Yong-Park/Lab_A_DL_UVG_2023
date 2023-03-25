@@ -6,7 +6,7 @@ os.environ["PATH"] += os.pathsep + 'D:/Program Files (x86)/Graphviz2.38/bin/'
 class DirectAfd:
     def __init__(self,postfix):
         self.postfix = postfix
-        print("self.postfix: ",self.postfix)
+        # print("self.postfix: ",self.postfix)
         #agregar el # de ultimo para la cadena
         self.postfix.append('#')
         self.postfix.append('•')
@@ -221,6 +221,7 @@ class DirectAfd:
         self.deletable_firstPos = []
         self.deletable_lastPos = []
         # print("self.newPostfix: ", self.newPostfix)
+        # print("self.postfix: ", self.postfix)
 
         #guardar todos los valores para el followpost
         for val in range(len(self.newPostfix)):
@@ -305,32 +306,6 @@ class DirectAfd:
 
 
             elif self.newPostfix[val] == '|':
-                # firstpos_c1 = self.deletable_firstPos[len(self.deletable_firstPos)-2]
-                # firstpos_c2 = self.deletable_firstPos[len(self.deletable_firstPos)-1]
-
-                # lastpos_c1 = self.deletable_lastPos[len(self.deletable_lastPos)-2]
-                # lastpos_c2 = self.deletable_lastPos[len(self.deletable_lastPos)-1]
-
-                # isnodes.extend(firstpos_c1)
-                # isnodes.extend(firstpos_c2)
-                # addnodes.extend(lastpos_c1)
-                # addnodes.extend(lastpos_c2)
-
-                # isnodes.sort()
-                # addnodes.sort()
-
-                # print("isnodes: ",isnodes )
-                # print("addnodes: ",addnodes )
-
-                # for nod in range(len(self.followPos)):
-                #     if self.followPos[nod][0] in isnodes:
-                #         if len(self.followPos[nod]) > 1:
-                #             for x in addnodes:
-                #                 if x not in self.followPos[nod][1]:
-                #                     self.followPos[nod][1].append(x)
-                #             self.followPos[nod][1].sort()
-                #         else:
-                #             self.followPos[nod].append(addnodes)
                 
                 self.deletable_firstPos.append(self.firstPos[val])
                 self.deletable_lastPos.append(self.lastPos[val])
@@ -342,20 +317,6 @@ class DirectAfd:
                 self.deletable_lastPos.pop(len(self.deletable_lastPos)-2)
                 
             elif self.newPostfix[val] == '?':
-                # isnodes.extend(self.deletable_firstPos[len(self.deletable_firstPos)-1])
-                # addnodes.extend(self.deletable_lastPos[len(self.deletable_lastPos)-1])
-                # print("isnodes: ",isnodes )
-                # print("addnodes: ",addnodes )
-                
-                # for nod in range(len(self.followPos)):
-                #     if self.followPos[nod][0] in isnodes:
-                #         if len(self.followPos[nod]) > 1:
-                #             for x in addnodes:
-                #                 if x not in self.followPos[nod][1]:
-                #                     self.followPos[nod][1].append(x)
-                #             self.followPos[nod][1].sort()
-                #         else:
-                #             self.followPos[nod].append(addnodes)
                 
                 self.deletable_firstPos.append(self.firstPos[val])
                 self.deletable_lastPos.append(self.lastPos[val])
@@ -363,6 +324,8 @@ class DirectAfd:
                 self.deletable_firstPos.pop(len(self.deletable_firstPos)-2)
 
                 self.deletable_lastPos.pop(len(self.deletable_lastPos)-2)
+            elif "#" in str(self.newPostfix[val]):
+                print(self.newPostfix[val])
             else:
                 self.deletable_firstPos.append(self.firstPos[val])
                 self.deletable_lastPos.append(self.lastPos[val])
@@ -370,24 +333,44 @@ class DirectAfd:
             # print("follopos: ", self.followPos)
             # print("fistpos deletable: ",self.deletable_firstPos)
             # print("lastpost deletable: ",self.deletable_lastPos)
-                            
-        #agregar el ultimo un signo ∅ ya que es el # 
+            
+        #agregar el ultimo un signo ∅ ya que es el #              
         self.followPos[len(self.followPos)-1].append(["∅"])
+         
+        #revisar de cada uno de los followpos construidos y revisar si entre ellos tiene #
+        # print("self.followPos: ",self.followPos )
+        # print("self.newPostfix: ", self.newPostfix)
+        for lar in range(len(self.followPos)):
+            for value in range(len(self.newPostfix)):
+                if self.followPos[lar][0] == self.newPostfix[value]:
+                    if "#" in self.postfix[value]:
+                        self.followPos[lar][1] = ["∅"]
+                        # print("self.followPos: ",self.followPos[lar][1] )
+                        # print(self.postfix[value])
+                        # print(self.newPostfix[value])
+                        # print("=========")
+        
         # print("___________")
         # print("followpos: ",self.followPos)
         
     def Dstate(self):
         # print("==========Dstates===============")
-        #nodo inicial
-        print(self.postfix)
-        # print(self.followPos)
-        # print(self.firstPos[len(self.firstPos)-1])
-        # print(self.lastPos)
+        # #nodo inicial
+        # print("self.postfix: ", self.postfix)
+        # print("self.newPostfix: ",self.newPostfix)
+        # print("self.followPos: ", self.followPos)
+       
+        # print("self.firstPos: ", self.firstPos[len(self.firstPos)-1])
+        # print("self.lastPos: ",self.lastPos)
         sNode = self.firstPos[len(self.firstPos)-1]
         # print("snode: ", sNode)
         # print("followpos: ", self.followPos)
+        
         #nodo final
-        final = self.followPos[len(self.followPos)-1][0]
+        final = []
+        for x in self.followPos:
+            if "∅" in x[1]:
+                final.append(x[0])
         # print("final: ", final)
         #aqui tendra todos los nodos de los cuales viajara
         P0 = []
@@ -395,11 +378,12 @@ class DirectAfd:
         #obtener las variables que utiliza
         self.variables = []
         for x in self.postfix:
-            if x not in "|•*+?#":
-                if x not in self.variables:
-                    # if type(x) == int:
-                    #     print("x: ",x)
-                    self.variables.append(x)
+            if x not in "|•*+?":
+                if "#" not in x:
+                    if x not in self.variables:
+                        # if type(x) == int:
+                        #     print("x: ",x)
+                        self.variables.append(x)
         # print("variables: ", self.variables)
         
         tabla = []
@@ -408,8 +392,6 @@ class DirectAfd:
             conjuntos = []
             conjuntos.append(x)
             for alfa in self.variables:  #a, b
-                # if type(alfa) == int:  
-                #     print("\nalfa: ",alfa)
                 movement = []
                 movement.append(alfa)
                 con = []
@@ -490,19 +472,26 @@ class DirectAfd:
         
         start = []
         end = []
+        endHash = []
         #obtener los nuevos iniciales y finales
         
         # print("node: ", node)
         for ele in range(len(node)):
             if node[ele] == sNode:
                 start.extend(alfanode[ele])
-            if final in node[ele]:
-                end.extend(alfanode[ele])
+            for f in final:
+                if f in node[ele]:
+                    end.extend(alfanode[ele])
+                    for val in range(len(self.newPostfix)):
+                        if f == self.newPostfix[val]:
+                            endHash.append(self.postfix[val])
+        # print("final: ", final)
         #en caso que solo es un nodo
         if len(node) == 1:
             end.extend(alfanode[0])
         #se guardan los nuevos iniciales y finales correspondientes
         # print(start)
+        # print(endHash)
         # print(end)
         
         sfPoint=[]
@@ -510,6 +499,7 @@ class DirectAfd:
         # print("end: ", end)
         sfPoint.append(start)
         sfPoint.append(end)  
+        sfPoint.append(endHash)
             
         
         return [self.nueva_lista,sfPoint]
@@ -520,19 +510,24 @@ class DirectAfd:
         final = sfPoint[1]
         q_list = []
         q = list(string.ascii_uppercase)
-        # print(directAFD)
+        # print("directAFD: ",directAFD)
 
         #guardar los valores de q utilizados
         for l in directAFD:
             for q_search in q:
-                if q_search in l:
+                if q_search == l[0]:
+                    if q_search not in q_list:
+                        q_list.append(q_search)
+                if q_search == l[2]:
                     if q_search not in q_list:
                         q_list.append(q_search)
 
         f = graphviz.Digraph(comment = "afd Directo")
         inicio_listo = True
+        # print("final: ", final)
         
         for name in q_list:
+            # print(name)
             if name in final:
                 f.node(str(name), shape="doublecircle",fillcolor="#ee3b3b",style="filled")
             elif name in inicio:
@@ -541,18 +536,21 @@ class DirectAfd:
                 f.node(str(name))
         f.node("", shape="plaintext")
         for l in directAFD:
-            # print(l)
+            # print("l: ",l)
             for val in inicio:
                 if val in l and l[0] == val:
                     if(inicio_listo):
+                        # print(val)
+                        # print(l[0])
                         f.edge("",str(l[0]),label = "")
                         inicio_listo = False
             if len(l) > 1:
                 if type(l[1]) == int:
-                    print(l[1])
+                    # print("l[1]: ",l[1])
                     l[1] = chr(l[1])
                 f.edge(str(l[0]),str(l[2]),label = str(l[1]))
             else:
+                # print("l[0]: ", l[0])
                 f.node(str(l[0]))
         f.render("afd Directo", view = True)
         

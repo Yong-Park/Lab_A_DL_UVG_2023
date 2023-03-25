@@ -95,7 +95,9 @@ post = Postfix(r)
 new_infix = post.infix_Transformation()
 #obtencion de su postfix
 postfix = post.transform_postfix(new_infix)
-postfix = [' ', '\\t', '|', '\\n', '|', '+', '#ws', '•', 'A', 'B', '|', 'A', 'B', '|', '0', '1', '|', '|', '*', '•', '#id', '•', '|', 43, '#43', '•', '|', 42, '#42', '•', '|', 40, '#40', '•', '|', 41, '#41', '•', '|']
+postfix = [32, '0900', '|', '0a00', '|', '+', '#ws', '•', 'A', 'B', '|', 'C', '|', 'D', '|', 'E', '|', 'F', '|', 'G', '|', 'H', '|', 'I', '|', 'J', '|', 'K', '|', 'L', '|', 'M', '|', 'N', '|', 'O', '|', 'P', '|', 'Q', '|', 'R', '|', 'S', '|', 'T', '|', 'U', '|', 'V', '|', 'W', '|', 'X', '|', 'Y', '|', 'Z', '|', 'a', '|', 'b', '|', 'c', '|', 'd', '|', 'e', '|', 'f', '|', 'g', '|', 'h', '|', 'i', '|', 'j', '|', 'k', '|', 'l', '|', 'm', '|', 'n', '|', 'o', '|', 'p', '|', 'q', '|', 'r', '|', 's', '|', 't', '|', 'u', '|', 'v', '|', 'w', '|', 'x', '|', 'y', '|', 'z', '|', 'A', 'B', '|', 'C', '|', 'D', '|', 'E', '|', 'F', '|', 'G', '|', 'H', '|', 'I', '|', 'J', '|', 'K', '|', 'L', '|', 'M', '|', 'N', '|', 'O', '|', 'P', '|', 'Q', '|', 'R', '|', 'S', '|', 'T', '|', 'U', '|', 'V', '|', 'W', '|', 'X', '|', 'Y', '|', 'Z', '|', 'a', '|', 'b', '|', 'c', '|', 'd', '|', 'e', '|', 'f', '|', 'g', '|', 'h', '|', 'i', '|', 'j', '|', 'k', '|', 'l', '|', 'm', '|', 'n', '|', 'o', '|', 'p', '|', 'q', '|', 'r', '|', 's', '|', 't', '|', 'u', '|', 'v', '|', 'w', '|', 'x', '|', 'y', '|', 'z', '|', '_', '*', '|', '0', '1', '|', '2', '|', '3', '|', '4', '|', '5', '|', '6', '|', '7', '|', '8', '|', '9', '|', '|', '*', '•', '#id', '•', '|', '0', '1', '|', '2', '|', '3', '|', '4', '|', '5', '|', '6', '|', '7', '|', '8', '|', '9', '|', '+', '.', '0', '1', '|', '2', '|', '3', '|', '4', '|', '5', '|', '6', '|', '7', '|', '8', '|', '9', '|', '+', '•', '?', '•', 'E', 43, 45, '|', '?', '•', '0', '1', '|', '2', '|', '3', '|', '4', '|', '5', '|', '6', '|', '7', '|', '8', '|', '9', '|', '+', '•', '?', '•', '#number', '•', '|', 59, '#59', '•', '|', ':=', '#:=', '•', '|', 60, '#60', '•', '|', 61, '#61', '•', '|', 43, '#43', '•', '|', 45, '#45', '•', '|', 42, '#42', '•', '|', 47, '#47', '•', '|', 40, '#40', '•', '|', 41, '#41', '•', '|']
+
+
 
 
 
@@ -128,16 +130,13 @@ result = tree.left_most()
 
 #realizar el afd directo desde la expresion regular
 # print(postfix)
-print("result: ", result)
+# print("result: ", result)
 afdDirecto = DirectAfd(result)
 tree.build_tree_from_postfix(afdDirecto.postfix)
 tree.print_tree()
 direct = afdDirecto.Dstate()
 afdDirecto.DirectGraph(direct[0],direct[1])
-
-directminimizado = Minimizacion(direct[0],direct[1])
-directo = directminimizado.startFunction()
-afdDirecto.DirectGraph(directo[0],directo[1])
+print(direct[1])
 
 
 # #comenzar con la simulacion para afn y afd
@@ -146,5 +145,5 @@ simulation = Simulation()
 # print("afd: ", simulation.afdSimulation(afd[0],afd[1],w))
 # print("afd minimizado: ", simulation.afdSimulation(afdMinimzado[0],afdMinimzado[1],w))
 print("afd directo: ", simulation.afdSimulation(direct[0],direct[1],w))
-print("afd directo Minimizado: ", simulation.afdSimulation(directo[0],directo[1],w))
+
 
