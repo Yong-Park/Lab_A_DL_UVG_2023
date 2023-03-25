@@ -13,7 +13,11 @@ class Tree:
     def build_tree_from_postfix(self, postfix):
         stack = []
         for symbol in postfix:
-            if symbol not in "|*•+?":
+            if str(symbol) not in "|*•+?":
+                if type(symbol) == int:
+                    symbol = str(symbol)
+                # if "\\" in symbol:
+                #     symbol = symbol[1:]
                 node = Node(symbol)
                 stack.append(node)
             elif symbol == '|':

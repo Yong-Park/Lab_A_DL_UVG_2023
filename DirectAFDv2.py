@@ -6,6 +6,7 @@ os.environ["PATH"] += os.pathsep + 'D:/Program Files (x86)/Graphviz2.38/bin/'
 class DirectAfd:
     def __init__(self,postfix):
         self.postfix = postfix
+        print("self.postfix: ",self.postfix)
         #agregar el # de ultimo para la cadena
         self.postfix.append('#')
         self.postfix.append('•')
@@ -219,7 +220,7 @@ class DirectAfd:
         #limpiar los deletable
         self.deletable_firstPos = []
         self.deletable_lastPos = []
-        # print(self.newPostfix)
+        # print("self.newPostfix: ", self.newPostfix)
 
         #guardar todos los valores para el followpost
         for val in range(len(self.newPostfix)):
@@ -378,7 +379,7 @@ class DirectAfd:
     def Dstate(self):
         # print("==========Dstates===============")
         #nodo inicial
-        # print(self.postfix)
+        print(self.postfix)
         # print(self.followPos)
         # print(self.firstPos[len(self.firstPos)-1])
         # print(self.lastPos)
@@ -396,6 +397,8 @@ class DirectAfd:
         for x in self.postfix:
             if x not in "|•*+?#":
                 if x not in self.variables:
+                    # if type(x) == int:
+                    #     print("x: ",x)
                     self.variables.append(x)
         # print("variables: ", self.variables)
         
@@ -405,7 +408,8 @@ class DirectAfd:
             conjuntos = []
             conjuntos.append(x)
             for alfa in self.variables:  #a, b
-                # print("\nalfa: ",alfa)
+                # if type(alfa) == int:  
+                #     print("\nalfa: ",alfa)
                 movement = []
                 movement.append(alfa)
                 con = []
@@ -438,6 +442,8 @@ class DirectAfd:
                 for i in range(1,len(sub_array)):
                     # print(sub_array)
                     # print(len(sub_array))
+                    
+                    # print(sub_array[i][0])
                     new_element = [sub_array[0], sub_array[i][0], sub_array[i][1]]
                     self.nueva_lista.append(new_element)
             else:
@@ -542,6 +548,9 @@ class DirectAfd:
                         f.edge("",str(l[0]),label = "")
                         inicio_listo = False
             if len(l) > 1:
+                if type(l[1]) == int:
+                    print(l[1])
+                    l[1] = chr(l[1])
                 f.edge(str(l[0]),str(l[2]),label = str(l[1]))
             else:
                 f.node(str(l[0]))

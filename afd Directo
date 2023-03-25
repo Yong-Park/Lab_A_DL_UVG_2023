@@ -1,11 +1,35 @@
 // afd Directo
 digraph {
 	A [fillcolor="#7fff00" style=filled]
-	B [fillcolor="#ee3b3b" shape=doublecircle style=filled]
-	C [fillcolor="#ee3b3b" shape=doublecircle style=filled]
+	B
+	C
+	D
+	E
+	F
+	G
+	H [fillcolor="#ee3b3b" shape=doublecircle style=filled]
 	"" [shape=plaintext]
 	"" -> A [label=""]
-	A -> A [label=b]
-	A -> B [label=a]
-	B -> C [label=b]
+	A -> B [label=" "]
+	A -> B [label="\t"]
+	A -> B [label="\n"]
+	A -> C [label=A]
+	A -> C [label=B]
+	A -> D [label=43]
+	A -> E [label=42]
+	A -> F [label=40]
+	A -> G [label=41]
+	B -> B [label=" "]
+	B -> B [label="\t"]
+	B -> B [label="\n"]
+	B -> H [label="#ws"]
+	C -> C [label=A]
+	C -> C [label=B]
+	C -> C [label=0]
+	C -> C [label=1]
+	C -> H [label="#id"]
+	D -> H [label="#43"]
+	E -> H [label="#42"]
+	F -> H [label="#40"]
+	G -> H [label="#41"]
 }

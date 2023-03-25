@@ -95,34 +95,40 @@ post = Postfix(r)
 new_infix = post.infix_Transformation()
 #obtencion de su postfix
 postfix = post.transform_postfix(new_infix)
+postfix = [' ', '\\t', '|', '\\n', '|', '+', '#ws', '•', 'A', 'B', '|', 'A', 'B', '|', '0', '1', '|', '|', '*', '•', '#id', '•', '|', 43, '#43', '•', '|', 42, '#42', '•', '|', 40, '#40', '•', '|', 41, '#41', '•', '|']
+
+
+
 # print(postfix)
 # Construccion del arbol del postfix
 tree = Tree()
 tree.build_tree_from_postfix(postfix)
-tree.print_tree()
+# tree.print_tree()
 # obtener la lectura desde el left most utilizando el arbol construido
 result = tree.left_most()
 
 #comenzar con la construccion de thompson
-afn = Thompson()
+# afn = Thompson()
 #construir el afn
-afn_construido = afn.construccion_thompson(result)
+# afn_construido = afn.construccion_thompson(result)
 #mostrar el grafico del afn
-afn.afnGraph(afn_construido[0],afn_construido[1])
+# afn.afnGraph(afn_construido[0],afn_construido[1])
 
 #comenzar la utilizacion de subset alimentarlo con el afn, y los inicales y finales y tambien el postfix
-subset = Subset(afn_construido[0],afn_construido[1],postfix)
+# subset = Subset(afn_construido[0],afn_construido[1],postfix)
 #comenzar la construccion por medio de subset
-afd = subset.afnConstruction()
+# afd = subset.afnConstruction()
 #construir el grafo del afn
-subset.afdGraph(afd[0],afd[1])
+# subset.afdGraph(afd[0],afd[1])
 
 #realizar la minimizacion del afd
-minimizacion = Minimizacion(afd[0],afd[1])
-afdMinimzado = minimizacion.startFunction()
-minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
+# minimizacion = Minimizacion(afd[0],afd[1])
+# afdMinimzado = minimizacion.startFunction()
+# minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
 
 #realizar el afd directo desde la expresion regular
+# print(postfix)
+print("result: ", result)
 afdDirecto = DirectAfd(result)
 tree.build_tree_from_postfix(afdDirecto.postfix)
 tree.print_tree()
@@ -136,9 +142,9 @@ afdDirecto.DirectGraph(directo[0],directo[1])
 
 # #comenzar con la simulacion para afn y afd
 simulation = Simulation()
-print("afn: ", simulation.afnSimulation(afn_construido[0],afn_construido[1],w))
-print("afd: ", simulation.afdSimulation(afd[0],afd[1],w))
-print("afd minimizado: ", simulation.afdSimulation(afdMinimzado[0],afdMinimzado[1],w))
+# print("afn: ", simulation.afnSimulation(afn_construido[0],afn_construido[1],w))
+# print("afd: ", simulation.afdSimulation(afd[0],afd[1],w))
+# print("afd minimizado: ", simulation.afdSimulation(afdMinimzado[0],afdMinimzado[1],w))
 print("afd directo: ", simulation.afdSimulation(direct[0],direct[1],w))
 print("afd directo Minimizado: ", simulation.afdSimulation(directo[0],directo[1],w))
 
