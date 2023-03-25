@@ -95,11 +95,6 @@ post = Postfix(r)
 new_infix = post.infix_Transformation()
 #obtencion de su postfix
 postfix = post.transform_postfix(new_infix)
-postfix = [32, '0900', '|', '0a00', '|', '+', '#ws', '•', 'A', 'B', '|', 'C', '|', 'D', '|', 'E', '|', 'F', '|', 'G', '|', 'H', '|', 'I', '|', 'J', '|', 'K', '|', 'L', '|', 'M', '|', 'N', '|', 'O', '|', 'P', '|', 'Q', '|', 'R', '|', 'S', '|', 'T', '|', 'U', '|', 'V', '|', 'W', '|', 'X', '|', 'Y', '|', 'Z', '|', 'a', '|', 'b', '|', 'c', '|', 'd', '|', 'e', '|', 'f', '|', 'g', '|', 'h', '|', 'i', '|', 'j', '|', 'k', '|', 'l', '|', 'm', '|', 'n', '|', 'o', '|', 'p', '|', 'q', '|', 'r', '|', 's', '|', 't', '|', 'u', '|', 'v', '|', 'w', '|', 'x', '|', 'y', '|', 'z', '|', 'A', 'B', '|', 'C', '|', 'D', '|', 'E', '|', 'F', '|', 'G', '|', 'H', '|', 'I', '|', 'J', '|', 'K', '|', 'L', '|', 'M', '|', 'N', '|', 'O', '|', 'P', '|', 'Q', '|', 'R', '|', 'S', '|', 'T', '|', 'U', '|', 'V', '|', 'W', '|', 'X', '|', 'Y', '|', 'Z', '|', 'a', '|', 'b', '|', 'c', '|', 'd', '|', 'e', '|', 'f', '|', 'g', '|', 'h', '|', 'i', '|', 'j', '|', 'k', '|', 'l', '|', 'm', '|', 'n', '|', 'o', '|', 'p', '|', 'q', '|', 'r', '|', 's', '|', 't', '|', 'u', '|', 'v', '|', 'w', '|', 'x', '|', 'y', '|', 'z', '|', '_', '*', '|', '0', '1', '|', '2', '|', '3', '|', '4', '|', '5', '|', '6', '|', '7', '|', '8', '|', '9', '|', '|', '*', '•', '#id', '•', '|', '0', '1', '|', '2', '|', '3', '|', '4', '|', '5', '|', '6', '|', '7', '|', '8', '|', '9', '|', '+', '.', '0', '1', '|', '2', '|', '3', '|', '4', '|', '5', '|', '6', '|', '7', '|', '8', '|', '9', '|', '+', '•', '?', '•', 'E', 43, 45, '|', '?', '•', '0', '1', '|', '2', '|', '3', '|', '4', '|', '5', '|', '6', '|', '7', '|', '8', '|', '9', '|', '+', '•', '?', '•', '#number', '•', '|', 59, '#59', '•', '|', ':=', '#:=', '•', '|', 60, '#60', '•', '|', 61, '#61', '•', '|', 43, '#43', '•', '|', 45, '#45', '•', '|', 42, '#42', '•', '|', 47, '#47', '•', '|', 40, '#40', '•', '|', 41, '#41', '•', '|']
-
-
-
-
 
 # print(postfix)
 # Construccion del arbol del postfix
@@ -110,23 +105,23 @@ tree.build_tree_from_postfix(postfix)
 result = tree.left_most()
 
 #comenzar con la construccion de thompson
-# afn = Thompson()
+afn = Thompson()
 #construir el afn
-# afn_construido = afn.construccion_thompson(result)
+afn_construido = afn.construccion_thompson(result)
 #mostrar el grafico del afn
-# afn.afnGraph(afn_construido[0],afn_construido[1])
+afn.afnGraph(afn_construido[0],afn_construido[1])
 
 #comenzar la utilizacion de subset alimentarlo con el afn, y los inicales y finales y tambien el postfix
-# subset = Subset(afn_construido[0],afn_construido[1],postfix)
+subset = Subset(afn_construido[0],afn_construido[1],postfix)
 #comenzar la construccion por medio de subset
-# afd = subset.afnConstruction()
+afd = subset.afnConstruction()
 #construir el grafo del afn
-# subset.afdGraph(afd[0],afd[1])
+subset.afdGraph(afd[0],afd[1])
 
 #realizar la minimizacion del afd
-# minimizacion = Minimizacion(afd[0],afd[1])
-# afdMinimzado = minimizacion.startFunction()
-# minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
+minimizacion = Minimizacion(afd[0],afd[1])
+afdMinimzado = minimizacion.startFunction()
+minimizacion.minimizacionGraph(afdMinimzado[0],afdMinimzado[1])
 
 #realizar el afd directo desde la expresion regular
 # print(postfix)
